@@ -5,7 +5,7 @@ BOOK_NAME:=learngitthehardway
 
 include makefiles/Makefile.constants
 
-.PHONY: chapters $(CHAPTERS) deploy
+.PHONY: chapters $(CHAPTERS) deploy docker
 
 chapters: $(CHAPTERS) 
 
@@ -29,6 +29,9 @@ else
 deploy:
 	$(error not on rothko)
 endif
+
+docker: clean
+	docker build .
 
 clean:
 	rm -rf $(OUTPUT_DIR)/* $(DEPLOY_DIR)/*
