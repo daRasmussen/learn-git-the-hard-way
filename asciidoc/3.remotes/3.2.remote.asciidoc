@@ -2,12 +2,13 @@
 
 Now you are going to work with multiple repos.
 
-Let's do the same as you did before, but create alice_cloned and bob_cloned:
+Let's do the same as you did before, but create two clones of the origin:
+alice_cloned and bob_cloned.
 
 ---
-$ rm -rf 3.2.1
-$ mkdir 3.2.1
-$ cd 3.2.1
+$ rm -rf git_origin alice_cloned bob_cloned
+$ mkdir git_origin
+$ cd git_origin
 $ git init
 $ echo 'first commit' > file1
 $ git add file1
@@ -17,7 +18,7 @@ $ git clone git_origin alice_cloned
 $ git clone git_origin bob_cloned
 ---
 
-Now alice_cloned and bob_cloned have git_origin as the origin:
+Now alice_cloned and bob_cloned have git_origin as the origin remote:
 
 ----
 $ cd alice_cloned
@@ -53,13 +54,16 @@ and Bob as a so-called lieutenant.
 So here is how:
 
 1) ADD alice's repository as a remote to Bob's
+
 2) FETCH alice's updated master branch
+
 3) MERGE alice's master branch into Bob's local one
 
-As we have already seen, steps 2) and 3) can be collapsed into a 'git pull',
+As you have already seen, steps 2) and 3) can be collapsed into a 'git pull',
 but it is more instructive to keep these separate.
 
 1) ADD alice's repository as a remote to Bob's
+
 First, Bob needs to add alice's repository as a remote.
 
 ----
@@ -123,8 +127,9 @@ This 'Lieutenants' model is one example of a git workflow. Although it was the
 one git was originally created for, it is still common for developers to use
 a traditional centralised model around a repository such as GitLab or BitBucket.
 
-This is why people make jokes when GitHub is down about the fact that it should
-not be a problem because it is a distributed source control tool.
+This is why people make jokes when GitHub is down. Git is designed to be a
+distributed source control tool, but the simplicity of depending on a central
+server is also powerful. In any case, git can support both models.
 
 
 ==== What we learned

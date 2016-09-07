@@ -5,5 +5,4 @@ RUN npm install -g mermaid
 ADD . /book
 WORKDIR /book
 VOLUME output /book/output
-RUN touch /book/output/touched
 RUN make

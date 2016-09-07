@@ -61,8 +61,8 @@ Git submodules solve these management issues, with a little overhead.
 
 They use git commands to track copies of other repositories within your
 repository. The tracking is under your control (so you decide when it gets
-'updated'), and the tracking is done within a file that is stored with your git
-repository.
+'updated', regardless of how the other repository moves on), and the tracking is
+done within a file that is stored with your git repository.
 
 WARNING: git submodules can be confusing if you don't follow a few basic
 patterns or understand how they work, so it's worth paying attention to this.
@@ -74,16 +74,16 @@ We are going to assume you have the 'alicelib' repository created as above.
 Now create Bob's repository:
 
 ----
-rm -rf bob_repo && mkdir bob_repo && cd bob_repo
-git init
-echo 'source alicelib' > file1
-git add file1
-git commit -am 'sourcing alicelib'
-echo 'do something with alicelib experimental' >> file1
-git commit -am 'using alicelib experimental'
-cat file1
-# source alicelib
-# do something with alicelib
+$ rm -rf bob_repo && mkdir bob_repo && cd bob_repo
+$ git init
+$ echo 'source alicelib' > file1
+$ git add file1
+$ git commit -am 'sourcing alicelib'
+$ echo 'do something with alicelib experimental' >> file1
+$ git commit -am 'using alicelib experimental'
+$ cat file1
+source alicelib
+do something with alicelib
 ----
 
 Now we have alice's repo referenced in bob_repo's code, but bob_repo has no link
@@ -92,48 +92,48 @@ to alice_repo's code.
 The first step to including alicelib in bob_repo is to initialise submodules:
 
 ----
-git submodule init
+$ git submodule init
 ----
 
 Once a git submodule init has been performed, you can 'add' the submodule you
 want:
 
 ----
-git submodule add ../alicelib
-# Cloning into 'alicelib'...
-# done.
+$ git submodule add ../alicelib
+Cloning into 'alicelib'...
+done.
 ----
 
 A new file has been created (.gitmodules), and the folder alicelib has been
 created:
 
 ----
-ls -a
-# .		..		.git		.gitmodules	alicelib	file1
+$ ls -a
+.		..		.git		.gitmodules	alicelib	file1
 ----
 
 alicelib has been clone just as any other git repository would be anywhere
 else:
 
 ----
-ls -a alicelib/
+$ ls -a alicelib/
 .	..	.git	file1
 ----
 
 but the .gitmodules file tracks where the submodule comes from:
 
 ----
-cat .gitmodules 
-# [submodule "alicelib"]
-# 	path = alicelib
-# 	url = ../alicelib
+$ cat .gitmodules 
+[submodule "alicelib"]
+	path = alicelib
+	url = ../alicelib
 ----
 
 If you get confused, git provides a useful 'status' command for gitmodules:
 
 ----
-git submodule status
-# ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f alicelib (heads/master)
+$ git submodule status
+ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f alicelib (heads/master)
 ----
 
 Now, you may have some questions at this point, such as:
@@ -157,11 +157,11 @@ Since your 'alicelib' submodule is a straightforward clone of the remote
 branch:
 
 ----
-git branch -a -vv
-# * master                      ff75b7f [origin/master] B
-#   remotes/origin/HEAD         -> origin/master
-#   remotes/origin/experimental 969b840 C EXPERIMENTAL
-#   remotes/origin/master       ff75b7f B
+$ git branch -a -vv
+* master                      ff75b7f [origin/master] B
+  remotes/origin/HEAD         -> origin/master
+  remotes/origin/experimental 969b840 C EXPERIMENTAL
+  remotes/origin/master       ff75b7f B
 ----
 
 You are on the master branch (indicated with a *), which is mapped to
@@ -174,21 +174,21 @@ branch that does not exist locally but does exist remotely, git will assume you
 want to track that remote branch.
 
 ----
-git checkout experimental
-# Branch experimental set up to track remote branch experimental from origin.
-# Switched to a new branch 'experimental'
-git branch -a -vv
-# * experimental                969b840 [origin/experimental] C EXPERIMENTAL
-#   remotes/origin/HEAD         -> origin/master
-#   remotes/origin/experimental 969b840 C EXPERIMENTAL
-#   remotes/origin/master       ff75b7f B
+$ git checkout experimental
+Branch experimental set up to track remote branch experimental from origin.
+Switched to a new branch 'experimental'
+$ git branch -a -vv
+* experimental                969b840 [origin/experimental] C EXPERIMENTAL
+  remotes/origin/HEAD         -> origin/master
+  remotes/origin/experimental 969b840 C EXPERIMENTAL
+  remotes/origin/master       ff75b7f B
 ----
 
 NOTE: If more than one remote has the same name, git will not perform this
 matching. In that case you would have to run the full command:
 
 ----
-git checkout -b experimental --track origin/master
+$ git checkout -b experimental --track origin/master
 ----
 
 assuming it's the origin's master branch you want to track.
@@ -202,15 +202,15 @@ root folder and run 'git diff' you will see that the subproject commit of
 'alicelib' has changed:
 
 ----
-cd ..
-git diff
-# diff --git a/alicelib b/alicelib
-# index ff75b7f..969b840 160000
-# --- a/alicelib
-# +++ b/alicelib
-# @@ -1 +1 @@
-# -Subproject commit ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f
-# +Subproject commit 969b840142f389de55357350a6f26f0825e02393
+$ cd ..
+$ git diff
+diff --git a/alicelib b/alicelib
+index ff75b7f..969b840 160000
+--- a/alicelib
++++ b/alicelib
+@@ -1 +1 @@
+-Subproject commit ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f
++Subproject commit 969b840142f389de55357350a6f26f0825e02393
 ----
 
 The commit identifier now matches the experimental. 
@@ -222,11 +222,11 @@ automatically tracked within bob_repo's submodule.
 We want to commit this change to the submodule:
 
 ----
-git commit -am 'alicelib moved to experimental'
-# [master 1f67953] alicelib moved to experimental
-#  2 files changed, 4 insertions(+)
-#  create mode 100644 .gitmodules
-#  create mode 160000 alicelib
+$ git commit -am 'alicelib moved to experimental'
+[master 1f67953] alicelib moved to experimental
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 alicelib
 ----
 
 ==== Alice makes a change
@@ -234,21 +234,21 @@ git commit -am 'alicelib moved to experimental'
 Alice now spots a bug in her experimental branch that she wants to fix:
 
 ----
-cd ../alicelib
-git checkout experimental
-echo 'D' >> file1
-git commit -am 'D - a fix added'
+$ cd ../alicelib
+$ git checkout experimental
+$ echo 'D' >> file1
+$ git commit -am 'D - a fix added'
 ----
 
 Now there is a mismatch between alicelib's experimental branch and bob_repo's
 experimental branch.
 
 ----
-cd ../bob_repo/alicelib
-git status
-# On branch experimental
-# Your branch is up-to-date with 'origin/experimental'.
-# nothing to commit, working directory clean
+$ cd ../bob_repo/alicelib
+$ git status
+On branch experimental
+Your branch is up-to-date with 'origin/experimental'.
+nothing to commit, working directory clean
 ----
 
 git status reports that bob_repo's alicelib is up-to-date with
@@ -260,16 +260,16 @@ To get the latest changes you can perform a fetch and merge, or save time by
 running a 'pull', which does both:
 
 ----
-git pull
-# remote: Counting objects: 3, done.
-# remote: Total 3 (delta 0), reused 0 (delta 0)
-# Unpacking objects: 100% (3/3), done.
-# From /Users/imiell/gitcourse/alicelib
-#    969b840..1a725f6  experimental -> origin/experimental
-# Updating 969b840..1a725f6
-# Fast-forward
-#  file1 | 1 +
-#  1 file changed, 1 insertion(+)
+$ git pull
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From /Users/imiell/gitcourse/alicelib
+   969b840..1a725f6  experimental -> origin/experimental
+Updating 969b840..1a725f6
+Fast-forward
+ file1 | 1 +
+ 1 file changed, 1 insertion(+)
 ----
 
 GOTCHAS: Generally I would advise not editing repositories that are checked
@@ -283,23 +283,23 @@ included within a repository and at the same time referencing a remote
 repository, a simple clone will not check out the included submodule:
 
 ----
-cd ../..
-rm -rf bob_repo_cloned
-git clone bob_repo bob_repo_cloned
-cd bob_repo_cloned
-ls -1
-# alicelib
-# file1
-cd alicelib
-ls ## No output
+$ cd ../..
+$ rm -rf bob_repo_cloned
+$ git clone bob_repo bob_repo_cloned
+$ cd bob_repo_cloned
+$ ls -1
+alicelib
+file1
+$ cd alicelib
+$ ls ## No output
 ----
 
 Alicelib is not there. Confusingly, 'git submodule status' gives us little clue
 what's going on here.
 
 ----
-git submodule status
-# -969b840142f389de55357350a6f26f0825e02393 alicelib
+$ git submodule status
+-969b840142f389de55357350a6f26f0825e02393 alicelib
 ----
 
 The dash (or minus sign) at the front indicates the submodule is not cheked out.
@@ -307,12 +307,12 @@ Only by running a 'git submodule init' and a 'git submodule update' can you
 retrieve the appropriate submodule repository:
 
 ----
-git submodule init
-# Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
-git submodule update
-# Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
-git submodule status
-# 969b840142f389de55357350a6f26f0825e02393 alicelib (969b840)
+$ git submodule init
+Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
+$ git submodule update
+Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
+$ git submodule status
+969b840142f389de55357350a6f26f0825e02393 alicelib (969b840)
 ----
 
 Now the submodule status has no dash, and a commit ID has been added to the
@@ -325,16 +325,15 @@ Fortunately there is an easier way. You can clone the repository with a
 of those submodules ad infinitum) within the cloned repo:
 
 ----
-cd ..
-git clone --recursive bob_repo bob_repo_cloned_recursive
-# Cloning into 'bob_repo_cloned'...
-# done.
-# Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
-# Cloning into 'alicelib'...
-# done.
-# Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
+$ cd ..
+$ git clone --recursive bob_repo bob_repo_cloned_recursive
+Cloning into 'bob_repo_cloned'...
+done.
+Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
+Cloning into 'alicelib'...
+done.
+Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
 ----
-
 
 
 ==== You have learned

@@ -1,3 +1,70 @@
+=== Remote branches
+
+You're familiar now with git branches and remote git repositories.
+
+In this section you're going to familiarise yourself with how branches are
+managed between the two.
+
+First, set up a simple origin and clone just as we did before.
+
+
+TODO: look at output of below
+
+.Block Listing 3.3.1
+----
+$ rm -rf git_origin git_clone
+$ mkdir git_origin
+$ cd git_origin
+$ git init
+$ echo 'first commit' > file1
+$ git add file1
+$ git commit -am file1
+$ cd ..
+$ git clone git_origin git_clone
+----
+
+****************
+sidebar block?
+****************
+
+
+As it stands you have no branches on either the origin or the clone
+
+- two branches with the same name
+
+----
+cd git_clone                                                                                                                                                                      
+git checkout -b abranch                                                                                                                                                           
+echo 'cloned abranch commit' >> file1                                                                                                                                             
+git commit -am 'cloned abranch commit'                                                                                                                                            
+cd ../git_origin                                                                                                                                                                  
+git checkout -b abranch                                                                                                                                                           
+echo 'origin abranch commit' >> file1                                                                                                                                             
+git commit -am 'origin abranch commit'                                                                                                                                            
+cd ../git_clone                                                                                                                                                                   
+git push origin abranch:abranch  
+----
+
+- branch exists locally, but not on the remote
+
+----
+$ rm -rf git_origin git_clone
+$ mkdir git_origin
+$ cd git_origin
+$ git init
+$ echo 'first commit' > file1
+$ git add file1
+$ git commit -am file1
+$ cd ..
+$ git clone git_origin git_clone
+----
+
+- branch exists on the remote, but not locally
+- delete branch on remote
+
+git branch mappings:
+--------------------
+
 imiell@Ians-MacBook-Air:/space/git/shutit$ git push origin run:run
 Counting objects: 3, done.
 Delta compression using up to 4 threads.
@@ -7,3 +74,10 @@ Total 3 (delta 2), reused 0 (delta 0)
 To git@github.com:ianmiell/shutit.git
  * [new branch]      run -> run
 
+
+Deleting:
+---------
+
+:run
+
+run:

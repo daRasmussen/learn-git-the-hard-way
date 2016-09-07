@@ -31,7 +31,7 @@ deploy:
 endif
 
 docker: clean
-	docker build .
+	docker build --no-cache .
 
 clean:
 	rm -rf $(OUTPUT_DIR)/* $(DEPLOY_DIR)/*
