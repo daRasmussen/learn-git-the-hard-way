@@ -31,18 +31,22 @@ that was 'inferior' in status to the centralised version.
 As far as the user was concerned, code was in one of two states:
 
 - Local changes ('dirty')
-- Committed - pushed to server
+- Committed == pushed to server
 
-My local changes could not be shared with anyone else until
+My local changes could not be shared with anyone else until I committed and
+pushed them to the server.
 
 Git, by contrast, is fundamentally distributed. Each git repository is a full
 copy of each other git repositories.
 
-ALL GIT REPOSITORIES ARE EQUAL.
+Remember this:
+
+ALL GIT REPOSITORIES ARE EQUAL!
 
 Remember, git was created so people could work on the linux kernel across the
 globe, and offline. So there is no concept of a central server that holds the
-golden source.
+golden source. Instead people maintain their own source code database and
+reconcile, copy from and integrate with others'.
 
 ==== The Four Phases of Git Content
 
@@ -50,11 +54,11 @@ In the git world you have four phases your code can go through:
 
 image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200]
 
-Understanding these 4) stages are key to understanding git.
+Understanding these 4 stages are key to understanding git.
 
 If this seems over-complicated now, it won't as you grow to know and love git.
 If you've ever been confused by git, it's likely because these stages were
-not understood.
+not understood properly.
 
 ==== Branches
 
@@ -75,15 +79,28 @@ image::diagrams/1.1.2.mermaid.png[]
 That way users can choose to get a view of the source on the 'main line' branch
 or the 'experimental' one.
 
+That's all a branch is: a set of changes from a specific point in time.
 
-==== What About GitHub?
+
+==== But What About GitHub?
+
+Earlier we said that:
+
+ALL GIT REPOSITORIES ARE EQUAL!
 
 In practice, some repositories are more equal than others (eg GitHub). This is
-a matter of convention. I can use a GitHub repo as a secondary repo for my
-workflow - it's up to me (indeed I do this for some of my private repos).
+a matter of convention.
 
-This is why every GitHub outage causes a flurry of smart-alec comments about git
-being decentralised.
+Most people use GitHub as their reference repository, but I could use a GitHub
+repo as a secondary repo for my workflow - it's up to me (indeed I do this for
+some of my private repos).
+
+GitHub's de facto status as a centralised repository (and all the machinery that
+assumes its existence and continuous uptime) is the reason every GitHub
+outage causes a flurry of smart-alec comments about git being decentralised.
+
+Being a distributed system makes Git more challenging to understand than 
+traditional SCM tools.
 
 Keeping your local repo sync'd with others is one of the challenges of git, but
 the first step to mastering git is understanding this equality of repos.
@@ -93,7 +110,7 @@ the first step to mastering git is understanding this equality of repos.
 - History is more malleable.
 
 You can change the history in your own copy of the repo and others' (if you have
-the appropriate permission).
+the appropriate permission to).
 
 - Branching is cheap
 
@@ -105,7 +122,8 @@ Branch deletion is a common and cheap operation.
 - Commits are across the whole poject
 
 In contrast to other source control tools, changes are made across the whole
-project, not per file.
+project, not per file. So moving files involves no loss of history for that
+file.
 
 - No version numbers
 
@@ -125,7 +143,8 @@ At this point I assume you have git installed, and that you have set your
 details up as per the below. Replace with your email address and username:
 
 ----
-$ git config --global user.email "you@example.com" && git config --global user.name "Your Name"
+$ git config --global user.email "you@example.com"
+$ git config --global user.name "Your Name"
 ----
 
 ==== What we learned
