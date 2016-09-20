@@ -97,7 +97,16 @@ The above remotes are divided into "(fetch)" and "(push)" actions. These relate
 to two different actions on remotes, ie getting changes from a remote, or pushing
 changes to a remote.
 
-These actions can look to different remotes, but are the same in most use cases.
+These actions can work against different remotes. For example, the output of 
+git remote might be:
+
+----
+$ git remote -v
+origin	/Users/imiell/gitcourse/one_origin (fetch)
+origin	/Users/imiell/gitcourse/another_origin (push)
+----
+
+but I've never seen an example of this in the wild.
 
 First we look at 'fetch'ing from the remote.
 
@@ -209,6 +218,13 @@ Date:   Tue Jun 28 17:30:44 2016 +0100
 
 is what 'git pull' does in one go. A pull fetches the mapped branch, and then
 merges it into the local branch.
+
+In general I prefer that rather than using 'git pull' you do fetch and merge
+separately and keep reminding yourself of what's going with respect to 'remotes'
+in your git repository. Once you've internalised that workflow, start using
+'git pull' as a convenience. If you use 'git pull' too early there is a danger
+of seeing it as magical, or at least not feeling entirely sure about what's
+going on!
 
 We will cover what your branch locally is mapped to remotely in the next
 section, where we cover remote repository management in more depth.

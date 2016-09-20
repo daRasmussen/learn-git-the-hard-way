@@ -137,3 +137,4 @@ server is also powerful. In any case, git can support both models.
 - How to add a remote repo
 - How to fetch changes from the remote repo
 - How to merge changes from the remote repo
+- There are different git workflows for different organisation structures

@@ -1,16 +1,15 @@
-=== Remote branches
+=== Pushing Code
 
 You're familiar now with git branches and remote git repositories.
 
 In this section you're going to familiarise yourself with how branches are
-managed between the two.
+managed between the two, and what goes on in a push.
 
-First, set up a simple origin and clone just as we did before.
+First, set up a simple origin git repository and clone it, just as we did
+before.
 
-
-TODO: look at output of below
-
-.Block Listing 3.3.1
+//TODO: Do block listings across the book
+//.Block Listing 3.3.1
 ----
 $ rm -rf git_origin git_clone
 $ mkdir git_origin
@@ -23,29 +22,53 @@ $ cd ..
 $ git clone git_origin git_clone
 ----
 
-****************
-sidebar block?
-****************
-
-
-As it stands you have no branches on either the origin or the clone
-
-- two branches with the same name
+As it stands you have no branches on either the origin or the clone other than
+the default (master):
 
 ----
-cd git_clone                                                                                                                                                                      
-git checkout -b abranch                                                                                                                                                           
-echo 'cloned abranch commit' >> file1                                                                                                                                             
-git commit -am 'cloned abranch commit'                                                                                                                                            
-cd ../git_origin                                                                                                                                                                  
-git checkout -b abranch                                                                                                                                                           
-echo 'origin abranch commit' >> file1                                                                                                                                             
-git commit -am 'origin abranch commit'                                                                                                                                            
-cd ../git_clone                                                                                                                                                                   
-git push origin abranch:abranch  
+$ cd git_origin
+$ git branch -a -v
+* master bedca8c file1
+$ cd ../git_clone
+$ git branch -a -v
+* master                bedca8c file1
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master bedca8c file1
+$ cd ..
 ----
 
-- branch exists locally, but not on the remote
+Make sure you understand why there are three lines in the second 'git branch'
+output! If you don't, start the chapter again!
+
+
+==== Create branch and push to remote
+
+Now you're going to create a branch on the clone, do some work on it, and then
+push it to the remote repository.
+
+This is a common use case, as users may experiment with different branches
+locally, then decide they want to share their work with others by pushing it
+to a commonly-accessible remote repository, eg on GitHub.
+
+----
+$ cd git_clone
+$ git checkout -b abranch
+$ echo 'cloned abranch commit' >> file1
+$ git commit -am 'cloned abranch commit'
+$ git push origin abranch:abranch
+----
+
+The key bit there was at the end, with the git push command. The colon
+separates the local branch name from the branch name you are pushing to on the
+remote (which here happen to have the same name).
+
+
+==== Pushing to branch repositories with different content?
+
+You might be asking yourself at this point: what happens if both repositories
+have a branch with different content? 
+
+Let's see! Type this out.
 
 ----
 $ rm -rf git_origin git_clone
@@ -57,13 +80,131 @@ $ git add file1
 $ git commit -am file1
 $ cd ..
 $ git clone git_origin git_clone
+$ cd git_clone
+$ git checkout -b abranch
+$ echo 'cloned abranch commit' >> file1
+$ git commit -am 'cloned abranch commit'
+$ cd ../git_origin
+$ git checkout -b abranch
+$ echo 'origin abranch commit' >> file1
+$ git commit -am 'origin abranch commit'
+$ cd ../git_clone
+$ git push origin abranch:abranch
 ----
 
-- branch exists on the remote, but not locally
-- delete branch on remote
+The output of the last command will look something like this:
+
+----
+To /Users/imiell/tmp/git_origin
+ ! [rejected]        abranch -> abranch (fetch first)
+error: failed to push some refs to '/Users/imiell/tmp/git_origin'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+----
+
+Read the output carefully. It tells you exactly what's going on. Breaking it
+down:
+
+----
+Updates were rejected because the remote contains work that you do not have locally.
+----
+
+The remote (the origin) has a commit (with the content: 'origin abranch commit')
+that we have no record of locally in our branch with the same name.
+
+----
+This is usually caused by another repository pushing to the same ref.
+----
+
+It's correctly diagnosed the problem as another repository (git_remote)
+pushing to the same name on the receiving remote. Finally, it offers some
+advice.
+
+----
+You may want to first integrate the remote changes (e.g., 'git pull ...') before pushing again.
+----
+
+But you know better than to 'git pull'! Do a fetch and merge:
+
+----
+$ git fetch origin
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From /Users/imiell/tmp/git_origin
+ * [new branch]      abranch    -> origin/abranch
+----
+
+Now check the branches you have locally:
+
+----
+$ git branch -v -a
+* abranch                d99581a cloned abranch commit
+  master                 9917bcd file1
+  remotes/origin/HEAD    -> origin/master
+  remotes/origin/abranch f2be4e0 origin abranch commit
+  remotes/origin/master  9917bcd file1
+----
+
+Observe that the 'remotes/origin/abranch' branch you now have locally
+('f2be4e0 origin branch commit') is different from the local 'abranch' branch
+('d99581a cloned abranch commit').
+
+To complete your manual pull, merge the remote branch into the local:
+
+****
+For bonus points, do a rebase here rather than a merge for a cleaner history!
+****
+
+----
+$ git merge remotes/origin/abranch
+Auto-merging file1
+CONFLICT (content): Merge conflict in file1
+Automatic merge failed; fix conflicts and then commit the result.
+----
+
+Follow the instructions to resolve the conflict and commit the result.
+
+
+==== The branch exists on the remote, but not locally
+TODO
+
+
+==== Deleting branches on a remote
+
+run:
+TODO
+
+
 
 git branch mappings:
 --------------------
+TODO
+
+----
+$ git branch -vv
+* abranch                69728e9 merged
+  master                 9917bcd [origin/master] file1
+  remotes/origin/HEAD    -> origin/master
+  remotes/origin/abranch f2be4e0 origin abranch commit
+  remotes/origin/master  9917bcd file1
+----
+
+master locally mapped to origin/master, but abranch not.
+
+----
+$ git push 
+fatal: The current branch abranch has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin abranch
+----
+
+
+
 
 imiell@Ians-MacBook-Air:/space/git/shutit$ git push origin run:run
 Counting objects: 3, done.
@@ -75,9 +216,3 @@ To git@github.com:ianmiell/shutit.git
  * [new branch]      run -> run
 
 
-Deleting:
----------
-
-:run
-
-run:
