@@ -16,17 +16,17 @@ Let's look at a concrete example.
 Let's say Alice maintains a library:
 
 ----
-rm -rf alicelib && mkdir alicelib && cd alicelib
-git init
-echo 'A' > file1
-git add file1
-git commit -am 'A'
-git checkout -b experimental      # Branch to experimental
-echo 'C - EXPERIMENTAL' >> file1
-git commit -am EXPERIMENTAL
-git checkout master
-echo 'B' >> file1
-git commit -am 'B'
+$ rm -rf alicelib && mkdir alicelib && cd alicelib
+$ git init
+$ echo 'A' > file1
+$ git add file1
+$ git commit -am 'A'
+$ git checkout -b experimental      # Branch to experimental
+$ echo 'C - EXPERIMENTAL' >> file1
+$ git commit -am EXPERIMENTAL
+$ git checkout master
+$ echo 'B' >> file1
+$ git commit -am 'B'
 ----
 
 Alice's library's history looks like this:
@@ -40,8 +40,8 @@ B (master)
 ----
 
 
-Now Bob wants to use Alice's library, but specifically wants to use what's on
-the experimental branch.
+Now Bob wants to use Alice's library for his own code, but specifically wants to
+use what's on the experimental branch.
 
 One option is to copy the code over directly, but that seems to be against the
 spirit of git.
@@ -52,12 +52,17 @@ For one file it might be manageable, but for a more realistic and large project,
 managing this will be completely impractical.
 
 Another option is to check out the code in another folder and link to it in
-some predictable way in the code (eg 'source ../alice_experimental). Again,
+some predictable way in the code (eg your code might run
+'source ../alice_experimental). Again,
 this causes management problems, as the user checking out the source must
 remember to keep code outside this git repository in a certain place for it
 all to work.
 
-Git submodules solve these management issues, with a little overhead.
+==== git submodule
+
+Git submodules solve these 'external repository' dependency issues, with a
+little overhead. Now that you understand local and remote repositories, it will
+be easier to grasp how submodules work.
 
 They use git commands to track copies of other repositories within your
 repository. The tracking is under your control (so you decide when it gets
@@ -69,7 +74,7 @@ patterns or understand how they work, so it's worth paying attention to this.
 
 Let's make this clearer with a walkthrough.
 
-We are going to assume you have the 'alicelib' repository created as above.
+You are going to assume you have the 'alicelib' repository created as above.
 
 Now create Bob's repository:
 
@@ -86,7 +91,7 @@ source alicelib
 do something with alicelib
 ----
 
-Now we have alice's repo referenced in bob_repo's code, but bob_repo has no link
+Now you have alice's repo referenced in bob_repo's code, but bob_repo has no link
 to alice_repo's code.
 
 The first step to including alicelib in bob_repo is to initialise submodules:
@@ -219,7 +224,7 @@ Note that bob_repo tracks the _specific commit_ and not the remote branch.
 This means that changes to alicelib in the origin repository are not
 automatically tracked within bob_repo's submodule.
 
-We want to commit this change to the submodule:
+You want to commit this change to the submodule:
 
 ----
 $ git commit -am 'alicelib moved to experimental'
@@ -272,9 +277,11 @@ Fast-forward
  1 file changed, 1 insertion(+)
 ----
 
+****
 GOTCHAS: Generally I would advise not editing repositories that are checked
 out as submodules until you are more experienced with git. You quickly may find
 yourself in a 'detached HEAD' state and confused about what you've done.
+****
 
 ==== Checking out a project with submodules
 
