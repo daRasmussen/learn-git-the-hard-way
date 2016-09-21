@@ -213,11 +213,14 @@ Date:   Tue Jun 28 17:30:44 2016 +0100
 
 ==== What you've learned 
 
-- a fetch followed by
-- a merge
+You have learned what a 'git pull' actually does.
 
-is what 'git pull' does in one go. A pull fetches the mapped branch, and then
-merges it into the local branch.
+A 'git pull' does a
+
+- fetch, followed by a
+- merge
+
+A pull fetches the mapped branch, and then merges it into the local branch.
 
 In general I prefer that rather than using 'git pull' you do fetch and merge
 separately and keep reminding yourself of what's going with respect to 'remotes'

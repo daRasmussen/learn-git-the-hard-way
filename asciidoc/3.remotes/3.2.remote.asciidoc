@@ -138,3 +138,11 @@ server is also powerful. In any case, git can support both models.
 - How to fetch changes from the remote repo
 - How to merge changes from the remote repo
 - There are different git workflows for different organisation structures
+
+You now understand what a remote repository is, how it fits in with the 'all
+git repositories are equal' mantra, and are ready to look at working with
+remotes and branches.
+
+This is where git repositories' relationships become very intertwined, and 
+your hard work thus far will pay off as you get to doing a pull request and
+fully grasping what's happening!

@@ -1,0 +1,7 @@
+advanced, optional topics:
+
+- bare repos
+- working through history
+- re-initialising a repo
+- squashing
+- internals?
