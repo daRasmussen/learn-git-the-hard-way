@@ -1,1 +1,15 @@
-TODO
+Part 2 dealt with advanced local repository management and techniques
+
+Part 3 is where it gets interesting! In this part you will start to interact
+
+Now that you understand what a git repository is, how branches work, and how
+they are all fundamentally equivalent, you are in a great position to understand
+how to work with others using git.
+
+In Part 3 you will cover:
+
+- git push
+- git fetch
+- git pull
+- git submodule
+- pull requests

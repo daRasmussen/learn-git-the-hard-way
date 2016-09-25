@@ -45,9 +45,12 @@ https://github.com and sign up.
 
 ===== Fork the Repository
 
-TODO
+Next you need to fork the repository. To do this, go to the
+'learn-git-the-hard-way' repository on GitHub:
 
 https://github.com/ianmiell/learn-git-the-hard-way 
+
+and click on 'Fork this Repo' TODO check
 
 TODO
 
@@ -58,25 +61,51 @@ https://github.com/YOURUSERNAME/learn-git-the-hard-way
 
 To make a branch on your forked repository
 
-TODO: diagram of the repositories involved.
 
 TODO: clone, make branch, push branch
 
 //git clone https://github.com/YOURUSERNAME/learn-git-the-hard-way 
+
+
+
 //git checkout -b yourbranchname
-//git push origin yourbranchname:yourbranchname
+
 
 TODO: what we have done
+TODO: diagram of the repositories involved:
+- maintainer's repo (GitHub)
+- forked repo (GitHub)
+- clone from fork (local)
+- branch (local)
+
+Make sure these relationships are clear in your mind!
+
 
 ==== Make Change on the Branch
 
 TODO: change
+//vi
 
 TODO: commit
+//git commit
+//git push origin yourbranchname:yourbranchname
+TODO: what we have done
+TODO: diagram of the repositories involved:
+- maintainer's repo (GitHub)
+- forked repo (GitHub)
+- clone from fork (local)
+- branch (local)
+- commit (local)
+- branch on forked repo (GitHub)
+
 
 ==== Make Pull Request
 
-TODO: Go to github and view your repository
+Now we have a branch on the forked repository on GitHub, we want to get that
+branch's changes into the maintainer's repository. This is where we raise the
+pull request.
+
+Go to GitHub in a browser and view your repository.
 
 https://github.com/YOURUSERNAME/learn-git-the-hard-way 
 

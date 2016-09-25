@@ -15,6 +15,12 @@ $ cd shutit
 $ ls .git
 ----
 
+****
+NOTE: If you have problems cloning from GitHub, you can replace the clone with
+any URL that you can access from within your network. Otherwise, check your
+proxy settings.
+****
+
 There's .git, just as before.
 
 
