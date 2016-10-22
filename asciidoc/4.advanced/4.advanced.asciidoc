@@ -1,1 +1,10 @@
- 
+:chapter: 4
+
+== Advanced Git Topics
+
+
+include::4.intro.asciidoc[]
+
+include::4.1.log.asciidoc[]
+
+include::4.summary.asciidoc[]

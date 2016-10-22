@@ -1,7 +1,16 @@
-advanced, optional topics:
+Part 3 took you to the point where you could understand everything needed to
+perform and manage pull requests.
+
+Part 4 deals with more advanced topics that are not necessary for a good TODO
+
+
+
+In part 4 you will cover:
+
+- git log (advanced usage)
 
 - bare repos
 - working through history
 - re-initialising a repo
-- squashing
+- rebase/squashing
 - internals?
