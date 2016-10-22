@@ -68,6 +68,25 @@ It's worth also pointing out here that apart from its default status, there is
 nothing special about the 'master' branch. It's just a name. Your principal
 branch might be called 'live', 'alice', 'pristine', or whatever you like.
 
+==== What about tags?
+
+We can cover off tags real quick while we're here.
+
+Tags are the same as branches except they have no history. They point to a
+particular commit, and that's it!
+
+You can tag something where you are:
+
+----
+$ git tag iwozere
+----
+
+or you can tag wherever a branch is right now in your checkout:
+
+----
+$ git tag remember_to_tell_bob_to_rewrite_this bobs_branch
+----
+
 
 ==== What you learned
 
