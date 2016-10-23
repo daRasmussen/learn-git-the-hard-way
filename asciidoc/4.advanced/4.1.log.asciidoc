@@ -1,0 +1,382 @@
+=== Git Log 
+
+Git contains within each repository's local database a history of the changes
+made.
+
+While many git-based tools will give you a visualisation of this history to
+help you review the state of the system, it is less well-known that the 'git
+log' command has many useful flags which give you the power to view the
+history in whatever way you like.
+
+A familiarity with the 'git log' command can not only save you a lot of time,
+it can speed up the git learning process, and is available wherever git is, so
+you're not dependent on a particular tool to use git effectively.
+
+First, clone a codebase with a past. My rather messy shutit project is a good
+example to look at
+
+----
+$ git clone https://github.com/ianmiell/shutit.git
+$ cd shutit
+----
+
+Once cloned (it can take a while) run this command to view the kind of output
+git log can show you. Type this out:
+
+----
+$ git log --graph --oneline --all --decorate --topo-order
+* 2ccd639 (HEAD -> asciinema, origin/master, origin/HEAD, master) whoami
+* bef09f4 0.9.230
+* 945cfb8 check_exit
+* ddba50f expect
+* 97bb290 delaybeforesend
+* 7281409 remove print
+* dd82f13 cygwin
+* 8365e72 add delaybeforesend
+* 6c840dc 0.9.228
+* 37defe7 base
+* 4fbea61 only once, and len of b64 contents
+* 9d6a6ea add maxread, but switch off from send_file; add warning about speed
+* 0381298 stray comma
+* c8c09ff add timeout
+* 5577a87 curl -L to follow links, and do not assume bash is ok to send locally
+* dcbb99f latest
+* 904b83e tpyo
+* 2ca2fc6 check_last_exit_values calling bug
+*   235136a Merge branch 'master' of github.com:ianmiell/shutit
+|\  
+| * f1c55f3 exit
+* |   9c4e316 Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 0907da1 handle int
+| * 088dbf5 increase timeout
+* |   c307653 Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 9314fed (testing) telemetry improved
+[...]
+----
+
+By the end of this chapter you'll understand what's going on here.
+
+
+==== git log
+
+We have already seen git log earlier in the course.
+
+The output is most-recent commit first, down to the oldest from the current
+branch.
+
+----
+$ git log
+commit 2ccd639a3ffc8050b03315eb58153d9cc81831d0
+Author: Ian Miell <ian.miell@gmail.com>
+Date:   Thu Oct 20 08:44:36 2016 +0100
+
+    whoami
+
+commit bef09f4ef17173c4d24ade4f85ece058fc36ccf1
+Author: Ian Miell <ian.miell@gmail.com>
+Date:   Wed Oct 19 16:34:04 2016 +0100
+
+    0.9.230
+
+commit 945cfb8913750aff34d9cbcd91b650a05b82dde3
+Author: Ian Miell <ian.miell@gmail.com>
+Date:   Wed Oct 19 15:44:52 2016 +0100
+
+    check_exit
+[...]
+----
+
+ 
+
+==== --oneline
+
+Most of the time I don’t care about the author or the date, so in order that I
+can see more per screen, I use –oneline to only show the commit id and comment
+per-commit.
+
+----
+$ git log --oneline 
+2ccd639 whoami
+bef09f4 0.9.230
+945cfb8 check_exit
+ddba50f expect
+97bb290 delaybeforesend
+7281409 remove print
+dd82f13 cygwin
+8365e72 add delaybeforesend
+6c840dc 0.9.228
+37defe7 base
+4fbea61 only once, and len of b64 contents
+9d6a6ea add maxread, but switch off from send_file; add warning about speed
+0381298 stray comma
+c8c09ff add timeout
+5577a87 curl -L to follow links, and do not assume bash is ok to send locally
+dcbb99f latest
+[...]
+----
+
+==== --graph
+
+The problem with the above is that you only see a linear series of commits
+from the HEAD, and get no sense of what was merged in where.
+
+----
+$ git log --oneline --graph
+* 2ccd639 whoami
+[...]
+* 2ca2fc6 check_last_exit_values calling bug
+*   235136a Merge branch 'master' of github.com:ianmiell/shutit
+|\  
+| * f1c55f3 exit
+* |   9c4e316 Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 0907da1 handle int
+| * 088dbf5 increase timeout
+* |   c307653 Merge branch 'master' of github.com:ianmiell/shutit
+[...]
+----
+
+You can see where merges take place, and what commits were merged. If you
+recall the section on rebasing, this is why it is preferable to rebase your
+branches to the main branch and fast-forward on a merge - you get a cleaner
+and simpler history.
+
+==== -–all
+
+By default you only get the history leading up to the HEAD (ie where you are
+currently in the git history. Often I want to see all the branches in the
+history, so I add the –all flag.
+
+
+----
+$ git log --graph --oneline --all
+----
+
+Note that for this repo the output might look very similar to the previous.
+If you want to prove there's a difference, try this:
+
+----
+$ git log --graph --oneline --all > all_output
+$ git log --graph --oneline > noall_output
+$ diff all_output noall_output
+41,45d40
+< | *   62ce794 WIP on master: 6561888 0.9.221
+< | |\  
+< |/ /  
+< | * a10d7d5 index on master: 6561888 0.9.221
+< |/  
+99,106d93
+< | * 63bb0b0 keys
+< | * e4287a6 bytes
+< | * c050cb5 bytes
+< | * bdb1104 bytes
+< | * 41b3248 at end of file
+< | * 408a013 bytes
+< | * c764366 python3 work
+< |/  
+258a246
+> | * 133c137 test
+[...]
+$ rm all_output noall_output
+----
+
+
+
+==== -–decorate
+
+That's great, but I can’t see what branch is where! This is where you use –decorate.
+
+----
+$ git log --graph --oneline --all --decorate
+* 2ccd639 (HEAD -> asciinema, origin/master, origin/HEAD, master) whoami
+[...]
+* 2ca2fc6 check_last_exit_values calling bug
+*   235136a Merge branch 'master' of github.com:ianmiell/shutit
+|\  
+| * f1c55f3 exit
+* |   9c4e316 Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 0907da1 handle int
+| * 088dbf5 increase timeout
+* |   c307653 Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 9314fed (testing) telemetry improved
+| * 0492bff unfinished testing class
+* | 0ac55d7 tests updated
+|/  
+[...]
+* f9eb51a #267: eradicate delaybeforesend
+| *   62ce794 (refs/stash) WIP on master: 6561888 0.9.221
+| |\  
+|/ /  
+[...]
+----
+
+Now you're cooking with gas! Each remote or type of branch/tag is shown in a
+different colour (even stashes!). On my terminal, remotes are in red, HEAD is
+blue, local branches are in green, stashes in pink.
+
+If you want, you can show the ref name on each line by adding -–source, but I
+usually find this to be overkill:
+
+----
+$ git log --graph --oneline --all --decorate --source
+* 2ccd639       refs/heads/asciinema (HEAD -> asciinema, origin/master, origin/HEAD, master) whoami
+* bef09f4       refs/heads/asciinema 0.9.230
+[...]
+*   235136a     refs/heads/asciinema Merge branch 'master' of github.com:ianmiell/shutit
+|\  
+| * f1c55f3     refs/heads/asciinema exit
+* |   9c4e316   refs/heads/asciinema Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 0907da1     refs/heads/asciinema handle int
+| * 088dbf5     refs/heads/asciinema increase timeout
+* |   c307653   refs/heads/asciinema Merge branch 'master' of github.com:ianmiell/shutit
+|\ \  
+| |/  
+| * 9314fed     refs/heads/testing (testing) telemetry improved
+| * 0492bff     refs/heads/testing unfinished testing class
+* | 0ac55d7     refs/heads/asciinema tests updated
+|/  
+* 90c78b1       refs/heads/testing tidier
+[...]
+| *   62ce794   refs/stash (refs/stash) WIP on master: 6561888 0.9.221
+[...]
+----
+
+==== -–simplify-by-decoration
+
+If you're looking at the whole history of your project, you may want to see only
+the significant points of change (ie the lines affected by –decorate above) to
+eliminate all the intermediary commits. This is perfect for getting an overview
+of the project's shape as a whole.
+
+----
+$ git log --graph --oneline --all --decorate --simplify-by-decoration
+* 2ccd639 (HEAD -> asciinema, origin/master, origin/HEAD, master) whoami
+* 9314fed (testing) telemetry improved
+| * 62ce794 (refs/stash) WIP on master: 6561888 0.9.221
+|/  
+* 2bc6afa (origin/testing) a.py
+| * 63bb0b0 (origin/python3) keys
+|/  
+* a3c1b23 (origin/development) remove refs to base image
+* 9b4c569 (development) 0.9.206
+| * 1918650 (origin/gh-pages, gh-pages) shutit
+| | * 7d8a826 (origin/run) started
+| |/  
+|/|   
+| | * ca370a4 (origin/test) hash
+| |/  
+|/|   
+| | * ea5540d (origin/assert) latest tests
+| |/  
+|/|   
+| | * d006066 (origin/shutitfile) merged
+| |/  
+|/|   
+* | e617184 (origin/pexpect_object) appears to work
+* | 94387f1 (origin/logging) logging
+* | d1dbd43 (origin/templates) Merge branch 'templates' of github.com:ianmiell/shutit into templates
+* | 83a4530 (origin/241) only on interactive
+* | deea5aa (origin/239) try and move to correct dir
+* | 6564f06 (origin/depends) depends
+* | dbe5aec (origin/training_after) arg added
+* | 049e4e3 (origin/volumes) volumes
+* | 20e2770 (origin/expect_error) look in root library folder also
+| | * 6bd6eb2 (origin/haproxy) quotes
+[...]
+----
+
+==== -–pretty
+
+When viewing the whole history of the project in this way, you might want to
+re-introduce the Date info with '–pretty='
+
+----
+$ git log --graph --oneline --all --decorate --simplify-by-decoration --pretty='%ar %s %h' 
+* 3 days ago whoami 2ccd639
+* 2 weeks ago telemetry improved 9314fed
+| * 3 weeks ago WIP on master: 6561888 0.9.221 62ce794
+|/  
+* 3 weeks ago a.py 2bc6afa
+| * 4 weeks ago keys 63bb0b0
+|/  
+* 3 months ago remove refs to base image a3c1b23
+* 3 months ago 0.9.206 9b4c569
+| * 3 months ago shutit 1918650
+| | * 4 months ago started 7d8a826
+| |/  
+|/|   
+| | * 5 months ago hash ca370a4
+| |/  
+|/|   
+| | * 5 months ago latest tests ea5540d
+| |/  
+|/|   
+| | * 5 months ago merged d006066
+| |/  
+|/|   
+* | 6 months ago appears to work e617184
+* | 7 months ago logging 94387f1
+* | 7 months ago Merge branch 'templates' of github.com:ianmiell/shutit into templates d1dbd43
+* | 7 months ago only on interactive 83a4530
+* | 10 months ago try and move to correct dir deea5aa
+* | 11 months ago depends 6564f06
+* | 11 months ago arg added dbe5aec
+* | 1 year, 1 month ago volumes 049e4e3
+* | 1 year, 2 months ago look in root library folder also 20e2770
+| | * 1 year, 2 months ago quotes 6bd6eb2
+| |/  
+|/|   
+* |   1 year, 3 months ago merged 2ae6568
+|\ \  
+| * \   2 years, 2 months ago Merge branch 'gh-pages' of https://github.com/ianmiell/shutit da82df7
+[...]
+----
+
+
+This gives a formatted output, showing (in this case) the relative timestamp
+(%ar), the commit subject (%s), and the short hash (%h).
+
+You can even see the abstract shape of the git repo by not printing any details!
+
+----
+$ git log --graph --oneline --all --decorate --simplify-by-decoration --pretty= 
+* * | * 
+|/  * | * 
+|/  * * | * | | * 
+| |/  
+|/|   | | * 
+| |/  
+|/|   | | * 
+| |/  
+|/|   | | * 
+| |/  
+|/|   * | * | * | * | * | * | * | * | * | | | * 
+| |/  
+|/|   * |   
+|\ \  | * \   
+| |\ \  
+| | |/  | | | * 
+| |_|/  
+|/| |   | | | * 
+| |_|/  
+|/| |   | | | * 
+| |_|/  
+|/| |   * | | * | |   
+|\ \ \  
+| |/ /  
+|/| /   
+| |/    | * * 
+----
+
+TODO: conclude
