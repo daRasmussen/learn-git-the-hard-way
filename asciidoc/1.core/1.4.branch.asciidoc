@@ -45,28 +45,62 @@ Note that the HEAD (and branch) moves forward with each commit.
 The head is where git is pointed at right now, the branch is where that branch
 reference is pointed to.
 
-HEAD can be moved to an arbitrary point (git checkout does this)
+===== Detached Heads
+
+Sometimes when using git you might have seen this:
 
 ----
-$ git log
-$ git checkout
 $ git status
+HEAD detached at 76d43b6
 ----
 
-TODO: more here
+The idea of 'detached heads' sounds scary, and often is to people. But it
+needn't be!
 
-Detached head means you are not associated with a branch. 
+The HEAD pointer can be moved to an arbitrary point (git checkout does this).
+
+The next set of commands will check out the repository this 
+
+----
+$ mkdir lgthw
+$ cd lgthw
+$ git clone https://github.com/ianmiell/learn-git-the-hard-way.git
+$ git log 
+$ git checkout 76d43b6b66f295c0a6c8fc738a3487cd31aea136 
+Note: checking out '76d43b6b66f295c0a6c8fc738a3487cd31aea136'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 76d43b6... latest
+$ git status
+HEAD detached at 76d43b6
+nothing to commit, working directory clean
+$ cd -
+$ rm -rf lgthw
+----
+
+'HEAD detached' means you are in a position associated with a branch. 
 
 It 'feels wrong' to be on a detached head because you have no pointer to a
 branch to reference.
 
-SO:
-A 'branch' is just a pointer on a line of changes
-HEAD is just your 'current' branch
+===== A branch is just a pointer!
 
-It's worth also pointing out here that apart from its default status, there is
-nothing special about the 'master' branch. It's just a name. Your principal
-branch might be called 'live', 'alice', 'pristine', or whatever you like.
+Remember these points:
+
+- A 'branch' is just a pointer on a line of changes.
+
+- HEAD is just 'where you are right now'.
+
+- 'Detached head' means you are at a commit that has no branch associated with it
+
 
 ==== What about tags?
 
@@ -87,6 +121,11 @@ or you can tag wherever a branch is right now in your checkout:
 $ git tag remember_to_tell_bob_to_rewrite_this bobs_branch
 ----
 
+===== The 'master' branch
+
+It's worth also pointing out here that apart from its default status, there is
+nothing special about the 'master' branch. It's just a name. Your principal
+branch might be called 'live', 'alice', 'pristine', or whatever you like.
 
 ==== What you learned
 
