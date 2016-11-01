@@ -107,7 +107,7 @@ Remember these points:
 We can cover off tags real quick while we're here.
 
 Tags are the same as branches except they have no history. They point to a
-particular commit, and that's it!
+particular commit, and don't change (unless you force a change).
 
 You can tag something where you are:
 
@@ -136,4 +136,11 @@ branch might be called 'live', 'alice', 'pristine', or whatever you like.
 
 ==== Exercises
 
-TODO
+1) Clone a repository from GitHub and create a branch off the main branch
+(usually 'master') called 'mine'
+
+2) Read up on 'git tag' and create a new commit on your branch and tag it
+
+3) Create another commit from there, and return to your previous commit by
+doing 'git checkout <commit id>'. Does git status link to the tag as there's no
+commit?
