@@ -113,7 +113,7 @@ Updates were rejected because the remote contains work that you do not have loca
 ----
 
 The remote (the origin) has a commit (with the content: 'origin abranch commit')
-that you have no record of locally in our branch with the same name.
+that you have no record of locally in your branch with the same name.
 
 ----
 This is usually caused by another repository pushing to the same ref.
@@ -209,7 +209,7 @@ branch on the 'origin' repository, even though the 'origin' is known to the
 cloned repo. There's no magic about the tracking of a remote repository, you
 have to trigger your repository to read the remote's state.
 
-To get the branch into our repository you will need to fetch it.
+To get the branch into your repository you will need to fetch it.
 
 ----
 $ git fetch origin
@@ -332,7 +332,7 @@ or
 git push -u origin abranch
 ----
 
-and that would set up the tracking for us while pushing.
+and that would set up the tracking for you while pushing.
 
 Before that though, you're going to type:
 

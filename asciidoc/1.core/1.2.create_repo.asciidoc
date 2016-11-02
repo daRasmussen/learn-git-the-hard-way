@@ -26,8 +26,8 @@ $ git init
 This initialises a database in the folder '.git' locally.
 Your repository is entirely stored within this .git folder. There are no
 other files elsewhere on your filesystem you need to be concerned about.
-(There are config files for git, but these are global to the host. We can ignore
-them for now.)
+(There are config files for git, but these are global to the host. You can
+ignore them for now.)
 
 ----
 $ cd .git
@@ -54,7 +54,7 @@ What is worth being aware of here are:
 
 The HEAD is key - it points to the current branch you are 'on'.
 
-If we look at the file, we see it points to the refs/heads/master.
+If you look at the file, you will see it points to the refs/heads/master.
 
 This is an internal representation of the default 'master' branch.
 
@@ -82,7 +82,7 @@ $ cat config
 
 ==== git log
 
-If we want to look at the history of this repository, you can run the git log
+If you want to look at the history of this repository, you can run the git log
 command:
 
 ----
@@ -91,7 +91,7 @@ $ git log
 fatal: bad default revision 'HEAD'
 ----
 
-We have a problem! This repository has no history to look at.
+You have a problem! This repository has no history to look at.
 
 Git has followed the 'HEAD' pointer to the refs/heads/master entry and found
 nothing there! And indeed there is nothing there:
@@ -134,7 +134,7 @@ Untracked files:
 	mycode.c
 ----
 
-We are now advised that we have an 'untracked' file. Git has detected that it
+You are now advised that you have an 'untracked' file. Git has detected that it
 exists but the repository is not 'aware' of it.
 
 Make git aware of it by adding it to the repository.
@@ -154,23 +154,23 @@ Changes to be committed:
 	new file:   mycode.py
 ----
 
-We have added a file to the index ready to be committed to the repository.
+You have added a file to the index ready to be committed to the repository.
 
-Remember the four stages we talked about before:
+Remember the four stages you talked about before:
 
 image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200]
 
-We create our file (1- local changes), then added/staged it to the index (2)
+You create your file (1- local changes), then added/staged it to the index (2)
 and then committed to the local repository.
 
-Still we have no history!
+Still you have no history!
 
 ----
 $ git log
 fatal: bad default revision 'HEAD'
 ----
 
-So we need to commit it to the repository to get a history.
+So you need to commit it to the repository to get a history.
 
 ==== git commit
 
@@ -214,7 +214,7 @@ $ git log
 
 - git init
 - the .git folder
-- HEAD - a pointer to where in the history we are
+- HEAD - a pointer to where in the history you are
 - git log
 - git status
 - git add

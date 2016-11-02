@@ -5,7 +5,7 @@ In this section you will learn about:
 - git branch
 - git checkout
 
-In the next section of code we will create a git repository with a single file.
+In the next section of code you will create a git repository with a single file.
 This file will have separate changes made on two branches - master and
 newfeature.
 

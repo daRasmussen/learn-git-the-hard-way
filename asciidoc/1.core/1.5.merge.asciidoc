@@ -1,18 +1,18 @@
 === Merging
 
-We've already covered basic branching in previous sections. As you will recall,
+You've already covered basic branching in previous sections. As you will recall,
 branching gives you the ability to work on parallel streams of development in
 the same codebase.
 
 image::diagrams/1.5.1.mermaid.png[]
 
-In a sense, merging is the opposite of branching. When we merge, we take two
-separate points in our development tree and fuse them together.
+In a sense, merging is the opposite of branching. When you merge, you take two
+separate points in your development tree and fuse them together.
 
 It's important to understand merging as it's a routine job of a repository
 maintainer to merge branches together.
 
-In the above diagram, the repository is positioned at the tip of master (G). We
+In the above diagram, the repository is positioned at the tip of master (G).You 
 know this because the HEAD is pointed at it.
 
 If you merge the experimental branch into master with a 'git merge experimental',

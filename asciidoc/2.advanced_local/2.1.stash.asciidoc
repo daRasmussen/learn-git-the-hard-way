@@ -64,7 +64,7 @@ Saved working directory and index state WIP on master: 34509a0 initial
 HEAD is now at 34509a0 initial
 ----
 
-A quick 'git status' confirms that our working directory is 'clean':
+A quick 'git status' confirms that your working directory is 'clean':
 
 ----
 $ git status
@@ -72,7 +72,7 @@ On branch master
 nothing to commit, working directory clean
 ----
 
-What happened to our change?
+What happened to your change?
 
 The really keen can look at 
 
@@ -105,11 +105,11 @@ of the HEAD on a new 'refs/stash' branch.
 Don't worry too much about the details: it's basically stored
 all the changes you've made (but not _committed_) ready to be re-applied.
 
-'stash' is a special branch which is kept local to our repository. The message
-'WIP on master' and 'index on master' is added automatically for us.
+'stash' is a special branch which is kept local to your repository. The message
+'WIP on master' and 'index on master' is added automatically for you.
 
 The master branch is still where it was and the HEAD pointer is pointed at it
-(that is where our repo now is).
+(that is where your repo now is).
 
 I can now do my other work (in this case, pulling the latest changes from a 
 remote) without concern for whether it conflicts with those changes. 

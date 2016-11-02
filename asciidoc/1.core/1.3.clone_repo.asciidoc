@@ -5,8 +5,8 @@
 
 ==== Clone
 
-In this section we're going to play with the contents of our repository by
-deleting the content and seeing what our options are to recover from the
+In this section you're going to play with the contents of your repository by
+deleting the content and seeing what your options are to recover from the
 repository.
 
 ----
@@ -37,12 +37,12 @@ $ git log --oneline --graph         # graphical view of the history of this repo
 $ cd ..                             # exit this repo's root folder
 $ git clone shutit cloned_shutit    # clone the repository
 $ cd cloned_shutit                  # enter the repository
-$ ls .git                           # we have a copy of the repository's history
+$ ls .git                           # you have a copy of the repository's history
 $ rm -rf *                          # delete all the files!
 $ ls .git                           # The .git folder is still there
 ----
 
-We have cloned the repository, and 'accidentally' deleted all the files.
+You have cloned the repository, and 'accidentally' deleted all the files.
 
 ==== git reset
 
@@ -56,15 +56,15 @@ By contrast a 'git reset --hard' will blitz all local and added changes,
 reverting your checkout to a just-cloned state.
 
 ----
-$ git status        # reports that we have deleted files in working tree/directory
+$ git status        # reports that you have deleted files in working tree/directory
 $ git add .         # added to staging/index area
 $ git status        # reports that . Note there's a helpful message about resetting now! Let's explore that.
 $ git reset --mixed # --mixed is the default. out of staging/index area, but still deleted in the working directory!
-$ git status        # we are back to 'deleted in the working directory' with a message about being ready to add
+$ git status        # you are back to 'deleted in the working directory' with a message about being ready to add
 $ rm -rf *          # delete all the files again
 $ git add .         # added to staging/index area ready to commit again
 $ git reset --hard  # does a re-check out of the whole repository, discarding working directory and changes to the index
-$ git status        # we now have a consistent state between 1 (local changes) and 3 (committed)
+$ git status        # you now have a consistent state between 1 (local changes) and 3 (committed)
 ----
 
 

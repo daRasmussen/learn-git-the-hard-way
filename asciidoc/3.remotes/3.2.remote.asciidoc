@@ -75,7 +75,7 @@ origin	/Users/imiell/gitcourse/git_origin (fetch)
 origin	/Users/imiell/gitcourse/git_origin (push)
 ----
 
-You have now linked up our repository to alice's, and given it the name 'alice'.
+You have now linked up your repository to alice's, and given it the name 'alice'.
 
 2) FETCH alice's updated master branch
 
@@ -89,7 +89,7 @@ From ../alice_cloned
  * [new branch]      master     -> alice/master
 ----
 
-Alice's master branch is now fetched to our local repository.
+Alice's master branch is now fetched to your local repository.
 
 ----
 $ git branch -vv -a
@@ -113,8 +113,8 @@ first commit
 alice_change
 ----
 
-You may be wondering why we use alice/master and not remotes/alice/master,
-as the output of 'git branch -vv -a' tells us. You can run:
+You may be wondering why you use alice/master and not remotes/alice/master,
+as the output of 'git branch -vv -a' tells you. You can run:
 
 ----
 $ git merge remotes/alice/master

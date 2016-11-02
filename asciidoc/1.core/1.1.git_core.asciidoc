@@ -9,7 +9,7 @@ This section covers:
 - git config
 
 If you're not familiar with source control, it solves a simple problem: how do
-we keep track of changes in our codebase? It's a database of files and the
+you keep track of changes in your codebase? It's a database of files and the
 histories of their states.
 
 I'm old enough to remember a time when people complained about using source
@@ -84,7 +84,7 @@ That's all a branch is: a set of changes from a specific point in time.
 
 ==== But What About GitHub?
 
-Earlier we said that:
+Earlier I said that:
 
 ALL GIT REPOSITORIES ARE EQUAL!
 
@@ -147,7 +147,7 @@ $ git config --global user.email "you@example.com"
 $ git config --global user.name "Your Name"
 ----
 
-==== What we learned
+==== What you learned
 
 - setting up git
 - what git is - the four stages

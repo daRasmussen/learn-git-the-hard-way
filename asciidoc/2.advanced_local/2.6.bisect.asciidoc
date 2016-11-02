@@ -45,7 +45,7 @@ and bad. One outcome might be:
 image::diagrams/2.6.6.mermaid.png[]
 
 Once you know that the first 'bad' commit was A63, you can examine the difference
-between A62 and A63, and this gives us a clue.
+between A62 and A63, and this gives you a clue.
 
 ==== A 'real' git bisect session
 

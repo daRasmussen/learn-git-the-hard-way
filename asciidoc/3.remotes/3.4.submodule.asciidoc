@@ -301,7 +301,7 @@ $ cd alicelib
 $ ls ## No output
 ----
 
-Alicelib is not there. Confusingly, 'git submodule status' gives us little clue
+Alicelib is not there. Confusingly, 'git submodule status' gives you little clue
 what's going on here.
 
 ----

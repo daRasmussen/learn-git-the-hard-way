@@ -2,7 +2,7 @@
 
 In this section we're going to look at the reflog.
 
-The reflog gives us references to a sequential history of what you have done to
+The reflog gives you references to a sequential history of what you have done to
 the repo. This can come in very handy when you play with your local repo's
 history, as you will see here.
 
