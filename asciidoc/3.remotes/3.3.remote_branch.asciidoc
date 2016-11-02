@@ -170,30 +170,106 @@ Follow the instructions to resolve the conflict and commit the result.
 
 
 ==== The branch exists on the remote, but not locally
-TODO
 
+It is common to have a branch that exists on a remote repository, but not in
+your local repository. Maybe someone else pushed a branch up, or has made
+a pull request from a branch in that repository.
 
-==== Deleting branches on a remote
-
-run:
-TODO
-
-
-
-git branch mappings:
---------------------
-TODO
+Type the following out to simulate that state of affairs:
 
 ----
-$ git branch -vv
-* abranch                69728e9 merged
-  master                 9917bcd [origin/master] file1
+$ rm -rf git_origin git_clone
+$ mkdir git_origin
+$ cd git_origin
+$ git init
+$ echo 'first commit' > file1
+$ git add file1
+$ git commit -am file1
+$ cd ..
+$ git clone git_origin git_clone
+$ cd git_origin
+$ git checkout -b abranch
+$ echo 'origin abranch commit' >> file1
+$ git commit -am 'cloned abranch commit'
+$ git branch -a
+* abranch
+  master
+$ cd ../git_clone
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+$ git remote -v
+origin	/tmp/git_origin (fetch)
+origin	/tmp/git_origin (push)
+----
+
+You will observe that the cloned repository has no knowledge of the 'abranch'
+branch on the 'origin' repository, even though the 'origin' is known to the
+cloned repo. There's no magic about the tracking of a remote repository, you
+have to trigger your repository to read the remote's state.
+
+To get the branch into our repository you will need to fetch it.
+
+----
+$ git fetch origin
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From /Users/imiell/tmp/git_origin
+ * [new branch]      abranch    -> origin/abranch
+----
+
+Note that we didn't need to specify a branch to get from the origin. By default
+it will get all branches that may be of interest.
+
+----
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/abranch
+  remotes/origin/master
+----
+
+Now your cloned repository has knowledge that a branch called abranch
+exists on the origin remote. But there is no branch in your local repository:
+
+----
+$ git branch
+* master
+----
+
+Now if you check out an abranch branch in your local repository, git is smart
+enough to match the name and uses this branch to 'track' the remote branch from
+the origin:
+
+----
+$ git checkout abranch
+Branch abranch set up to track remote branch abranch from origin.
+Switched to a new branch 'abranch'
+$ git branch -a -vv
+* abranch                19a1fe0 [origin/abranch] cloned abranch commit
+  master                 05d6bd2 [origin/master] file1
   remotes/origin/HEAD    -> origin/master
-  remotes/origin/abranch f2be4e0 origin abranch commit
-  remotes/origin/master  9917bcd file1
+  remotes/origin/abranch 19a1fe0 cloned abranch commit
+  remotes/origin/master  05d6bd2 file1
 ----
 
-master locally mapped to origin/master, but abranch not.
+Pay close attention to branch tracking, as it can be very confusing to git
+newcomers!
+
+Now if you 'git push' any changes on this branch, git will attempt to push 
+those changes to the tracked branch, ie the abranch branch on the remote
+repository.
+
+
+==== Tracking a remote branch with a different name
+
+More rarely, you may want to track a branch on the remote repository that
+has a different name. Or, you may want to manually mark the local branch as
+tracking a remote one.
+
+In these situations, you might see this kind of error when you push:
 
 ----
 $ git push 
@@ -203,16 +279,91 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin abranch
 ----
 
+As is often the case, careful reading of the error will tell you what you need
+to know. It's just the jargon that can be difficult to follow!
 
+In this case, the error is telling you that your branch is not tracking any
+remote branch, so it doesn't know what to push to.
 
+Type in these commands to reproduce this situation:
 
-imiell@Ians-MacBook-Air:/space/git/shutit$ git push origin run:run
+----
+$ rm -rf git_origin git_clone
+$ mkdir git_origin
+$ cd git_origin
+$ git init
+$ echo 'first commit' > file1
+$ git add file1
+$ git commit -am file1
+$ cd ..
+$ git clone git_origin git_clone
+$ cd git_clone
+$ git checkout -b abranch
+$ echo 'origin abranch commit' >> file1
+$ git commit -am 'cloned abranch commit'
+$ git push
+fatal: The current branch abranch has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin abranch
+----
+
+Now, let's have a look at the branches we have locally when we try to push:
+
+----
+$ git branch -vv
+* abranch 179b22a cloned abranch commit
+  master  41ffa8a [origin/master] file1
+----
+
+While the master branch is tracking the 'origin/master' branch (ie the master
+branch on the origin remote), the branch 'abranch' is not tracking any remote
+branch.
+
+At this point we could run either:
+
+----
+git push --set-upstream origin abranch
+----
+
+or
+
+----
+git push -u origin abranch
+----
+
+and that would set up the tracking for us while pushing.
+
+Before that though, you're going to type:
+
+----
+$ git push origin abranch
 Counting objects: 3, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 733 bytes | 0 bytes/s, done.
-Total 3 (delta 2), reused 0 (delta 0)
-To git@github.com:ianmiell/shutit.git
- * [new branch]      run -> run
+Writing objects: 100% (3/3), 273 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To /Users/imiell/tmp/git_origin
+ * [new branch]      abranch -> abranch
+----
+
+That successfully pushed the change to the remote branch, which was created
+as it did not already exist. However, if you re-run the branch command again:
+
+----
+$ git branch -vv
+* abranch 179b22a cloned abranch commit
+  master  41ffa8a [origin/master] file1
+----
+
+it is still not tracking the origin's master branch. If you add the 
+--set-upstream / -u flag on a push, the branch will track the remote's branch:
+
+----
+$ git push -u origin abranch
+Branch abranch set up to track remote branch abranch from origin.
+Everything up-to-date
+$ git branch -vv
+* abranch 179b22a [origin/abranch] cloned abranch commit
+  master  41ffa8a [origin/master] file1
+----
 
 

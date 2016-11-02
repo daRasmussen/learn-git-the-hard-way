@@ -146,3 +146,17 @@ remotes and branches.
 This is where git repositories' relationships become very intertwined, and 
 your hard work thus far will pay off as you get to doing a pull request and
 fully grasping what's happening!
+
+
+==== Exercises
+
+1) Create a git repo and clone it to a second one. Make a change on the first
+repo's master branch, and fetch and merge it into the second one.
+
+2) Create a change on both master branches from 1) that will conflict and commit
+them. Resolve the conflicts and make both repositories consistent.
+
+3) Do the same as in 2) but on three copies of the same repo (ie two clones).
+
+4) Try setting up two independent copies of the same repo (ie do not clone)
+and bring changes in and out on multiple branches.
