@@ -2,7 +2,7 @@
 
 Next we look at 'cherry-picking'.
 
-Since every commit in git is a change set with a reference id, we can easily
+Since every commit in git is a change set with a reference id, you can easily
 port changes from one branch to another.
 
 To demonstrate this, create a simple repository with two changes:
@@ -20,7 +20,7 @@ $ git commit -am change2
 $ git log
 ----
 
-At this point we branch off into two branches, master and experimental.
+At this point you branch off into two branches, master and experimental.
 
 ----
 $ git branch experimental
@@ -33,7 +33,7 @@ $ cat file1
 $ git commit -am sensible
 ----
 
-We decide that the sensible change is the one we want to keep.
+You decide that the sensible change is the one you want to keep.
 
 First get the reference id with a git log:
 

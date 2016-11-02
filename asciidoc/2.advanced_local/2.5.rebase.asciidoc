@@ -7,7 +7,7 @@ In essence it's quite simple, but it can get very confusing.
 Following this you're going to learn about rebasing and fast-forwarding with
 a simple example, so pay attention!
 
-Let's say we have a set of changes on a master branch:
+Let's say you have a set of changes on a master branch:
 
 image::diagrams/2.5.1.mermaid.png[]
 
@@ -33,19 +33,19 @@ image::diagrams/2.5.4.mermaid.png[]
 That is OK, but not entirely desirable for two reasons:
 
 - The history has just got more complicated
-- We have introduced an extra new change (G), which is the merge of D and F
+- You have introduced an extra new change (G), which is the merge of D and F
 
 Wouldn't it be better if the history looked like this?
 
 image::diagrams/2.5.5.mermaid.png[]
 
 This is much cleaner and easier to follow. If, for example, a bug was
-introduced in D, it's easier to find (eg using bisect, which we will come
+introduced in D, it's easier to find (eg using bisect, which you will come
 onto).
 Also, the feature1 branch can be safely deleted without any significant
 information being lost, making the history tidier and simpler.
 
-If we remind ourselves of the situation pre-merge (above)then we can 
+If you remind yourselves of the situation pre-merge (above) then you can 
 visualise 'picking up' the changes on the feature1 branch and moving them
 to the HEAD. So from this:
 
@@ -148,11 +148,11 @@ git log --all --decorate --graph
 #       A
 ----
 
-We are now in this state:
+You are now in this state:
 
 image::diagrams/2.5.3.mermaid.png[]
 
-We go to feature1 and rebase:
+You go to feature1 and rebase:
 
 ----
 git checkout feature1
@@ -215,7 +215,7 @@ git log --all --decorate --graph
 ----
 
 
-Now the changes are in one line we can merge the feature1 master branch.
+Now the changes are in one line you can merge the feature1 master branch.
 
 ----
 git checkout master
@@ -277,7 +277,7 @@ git merge feature1
 
 Because the changes are in a line, no new changes need to be made - the master
 branch pointer merely needs to be 'fast-forwarded' to the same point as 
-feature1! The HEAD pointer, naturally, moves with the branch we're on (master).
+feature1! The HEAD pointer, naturally, moves with the branch you're on (master).
 
 
 ==== What you learned

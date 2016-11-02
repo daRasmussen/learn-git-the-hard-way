@@ -1,12 +1,13 @@
 === Git Stash
 
-Next we introduce a concept that you may end up using a lot!
+Next I introduce a concept that you may end up using a lot!
 
 Often when you are working you want to return to a pristine state, but not lose
 the work you have done so far.
 
-Traditionally with other source control tools we've copied files changed locally
-aside, then updated our repo, and diffed and re-applied the changed files.
+Traditionally with other source control tools you've copied files that have 
+changed locally aside, then updated your repo, and diffed and re-applied the
+changed files.
 
 However, git has a concept of the stash to store all local changes ready to
 reapply at will.
@@ -102,7 +103,7 @@ committed the local change to the refs/stash branch, and merged them as a child
 of the HEAD on a new 'refs/stash' branch.
 
 Don't worry too much about the details: it's basically stored
-all the changes we've made (but not _committed_) ready to be re-applied.
+all the changes you've made (but not _committed_) ready to be re-applied.
 
 'stash' is a special branch which is kept local to our repository. The message
 'WIP on master' and 'index on master' is added automatically for us.

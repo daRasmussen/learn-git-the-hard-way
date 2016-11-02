@@ -1,6 +1,6 @@
 === Fetching and Pulling Content
 
-In part one we emphasized the point that all git repositories are equal.
+In part one I emphasized the point that all git repositories are equal.
 
 This section covers how git repositories communicate with each other and manage
 their differences.
@@ -88,7 +88,7 @@ origin	/Users/imiell/gitcourse/git_origin (fetch)
 origin	/Users/imiell/gitcourse/git_origin (push)
 ----
 
-which gives you the information about the URLs we saw in the config file.
+which gives you the information about the URLs you saw in the config file.
 
 
 ==== fetch
@@ -108,7 +108,7 @@ origin	/Users/imiell/gitcourse/another_origin (push)
 
 but I've never seen an example of this in the wild.
 
-First we look at 'fetch'ing from the remote.
+First you look at 'fetch'ing from the remote.
 
 'git fetch' gets the latest changes from the remote repository and copies them
 into the local repository.
@@ -186,9 +186,9 @@ $ cat .git/refs/remotes/origin/master
 056dd2ce64da1e746214107b74866c375a85ffc2
 ----
 
-So we've 'fetch'ed the remote branch and have it locally.
+So you've 'fetch'ed the remote branch and have it locally.
 
-To apply the remote master's changes to the local one we merge it just as we
+To apply the remote master's changes to the local one you merge it just as you 
 would for any other reference:
 
 ----
@@ -230,5 +230,9 @@ of seeing it as magical, or at least not feeling entirely sure about what's
 going on!
 
 We will cover what your branch locally is mapped to remotely in the next
-section, where we cover remote repository management in more depth.
+section, where you will cover remote repository management in more depth.
+
+==== Exercises 
+
+TODO
 

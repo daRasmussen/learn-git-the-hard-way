@@ -75,7 +75,7 @@ origin	/Users/imiell/gitcourse/git_origin (fetch)
 origin	/Users/imiell/gitcourse/git_origin (push)
 ----
 
-We have now linked up our repository to alice's, and given it the name 'alice'.
+You have now linked up our repository to alice's, and given it the name 'alice'.
 
 2) FETCH alice's updated master branch
 
@@ -132,7 +132,7 @@ distributed source control tool, but the simplicity of depending on a central
 server is also powerful. In any case, git can support both models.
 
 
-==== What we learned
+==== What you learned
 
 - How to add a remote repo
 - How to fetch changes from the remote repo

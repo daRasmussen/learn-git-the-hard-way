@@ -2,9 +2,9 @@
 
 In this section we're going to look at the reflog.
 
-The reflog gives us references to a sequential history of what we did to the
-repo. This can come in very handy when you play with your local repo's history,
-as we will see here.
+The reflog gives us references to a sequential history of what you have done to
+the repo. This can come in very handy when you play with your local repo's
+history, as you will see here.
 
 First set up a repo with two commits:
 
@@ -30,14 +30,14 @@ $ git checkout master
 $ git log
 ----
 
-NOTE: don't worry about what we just did - it's a more advanced set of commands
+NOTE: don't worry about what you just did - it's a more advanced set of commands
 that mess with git's history.
 
-The last commit has disappeared! We have fully reverted the master branch
+The last commit has disappeared! You have fully reverted the master branch
 to where it was before.
 
-Don't worry about what we did there, the point here is what we do if we get
-ourselves into a mess, what do we do to get out of it?
+Don't worry about what you did there, the point here is: what you do if you get
+ourselves into a mess, and what do you do to get out of it?
 
 This is where git reflog can help.
 
@@ -55,7 +55,7 @@ $ git reflog
 Git reflog is a history of the changes made to the HEAD (remember the head is a
 pointer to the current location of the repository).
 
-If we 'reset --hard' the repository to the reference given:
+If you 'reset --hard' the repository to the reference given:
 
 ----
 $ git reset --hard 40e99f7
@@ -63,9 +63,9 @@ HEAD is now at 40e99f7 file1.1
 $ git log
 ----
 
-we are returned to where we were.
+you are returned to where you were.
 
-The --hard updates both the index (staging/added) and the working tree, as we
+The --hard updates both the index (staging/added) and the working tree, as you 
 saw previously.
 
 The refog contains refernces to the state of the repository at various points

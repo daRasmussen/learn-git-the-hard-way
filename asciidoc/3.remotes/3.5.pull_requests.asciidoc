@@ -18,7 +18,7 @@ with the diffs to the maintainer, fork and branch, then send a reference to the
 branch, branch on the maintainer's repo and mail them the branch name, 
 put a request in plain English on a post-it - whatever works!
 
-We're going to focus here on the standard GitHub pull request model.
+I'm going to focus here on the standard GitHub pull request model.
 
 ==== GitHub pull requests
 
@@ -37,7 +37,7 @@ There is a file called 'records/trained_users.txt' in the repository of this
 course. You're going to add your name to it and raise that change as a 
 Pull Request.
 
-Remember that this is just one model of pull request! We will talk about
+Remember that this is just one model of pull request! I will talk about
 other models later.
 
 If you haven't created a GitHub account, please do so now. It's free. Go to
@@ -108,7 +108,7 @@ TODO: change
 TODO: commit
 //git commit
 //git push origin yourbranchname:yourbranchname
-TODO: what we have done
+TODO: what you have done
 TODO: diagram of the repositories involved:
 - maintainer's repo (GitHub)
 - forked repo (GitHub)

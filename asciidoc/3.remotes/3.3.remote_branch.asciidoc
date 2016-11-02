@@ -5,7 +5,7 @@ You're familiar now with git branches and remote git repositories.
 In this section you're going to familiarise yourself with how branches are
 managed between the two, and what goes on in a push.
 
-First, set up a simple origin git repository and clone it, just as we did
+First, set up a simple origin git repository and clone it, just as you did
 before.
 
 //TODO: Do block listings across the book
@@ -113,7 +113,7 @@ Updates were rejected because the remote contains work that you do not have loca
 ----
 
 The remote (the origin) has a commit (with the content: 'origin abranch commit')
-that we have no record of locally in our branch with the same name.
+that you have no record of locally in our branch with the same name.
 
 ----
 This is usually caused by another repository pushing to the same ref.
@@ -220,7 +220,7 @@ From /Users/imiell/tmp/git_origin
  * [new branch]      abranch    -> origin/abranch
 ----
 
-Note that we didn't need to specify a branch to get from the origin. By default
+Note that you didn't need to specify a branch to get from the origin. By default
 it will get all branches that may be of interest.
 
 ----
@@ -308,7 +308,7 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin abranch
 ----
 
-Now, let's have a look at the branches we have locally when we try to push:
+Now, let's have a look at the branches you have locally when you try to push:
 
 ----
 $ git branch -vv
@@ -320,7 +320,7 @@ While the master branch is tracking the 'origin/master' branch (ie the master
 branch on the origin remote), the branch 'abranch' is not tracking any remote
 branch.
 
-At this point we could run either:
+At this point you could run either:
 
 ----
 git push --set-upstream origin abranch
@@ -366,4 +366,6 @@ $ git branch -vv
   master  41ffa8a [origin/master] file1
 ----
 
+==== What you learned
 
+==== Exercises
