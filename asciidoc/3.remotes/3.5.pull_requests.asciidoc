@@ -88,34 +88,21 @@ The first command adds a line to the README.md file. The second commits the
 change you made to this new branch.
 
 
+==== Understand the relationships
+
+Make sure these relationships are clear in your mind! Here is a diagram that
+may help:
+
+                                                                                                                  
+image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200] 
 
 
 
-
-TODO: diagram of the repositories involved:
-- maintainer's repo (GitHub)
-- forked repo (GitHub)
-- clone from fork (local)
-- branch (local)
-
-Make sure these relationships are clear in your mind!
-
-
-
-TODO: change
-//vi
 
 TODO: commit
 //git commit
 //git push origin yourbranchname:yourbranchname
 TODO: what you have done
-TODO: diagram of the repositories involved:
-- maintainer's repo (GitHub)
-- forked repo (GitHub)
-- clone from fork (local)
-- branch (local)
-- commit (local)
-- branch on forked repo (GitHub)
 
 
 ==== Make Pull Request
@@ -129,18 +116,49 @@ Go to GitHub in a browser and view your repository:
 https://github.com/YOURUSERNAME/learn-git-the-hard-way 
 
 TODO: Go to the branch
-
 TODO: Click make pull request (?). Fill out the form
-
 TODO: What to do next
 
 
-==== 
-
 === Pull Requests in Practice - Rebasing
 
-Maintainers will often ask that you rebase your branch before making a pull 
-request.
+Maintainers will often ask that you rebase your branch to the main branch before
+making a pull request.
 
-TODO: refer to rebase section, describe
+You will remember rebases from section [TODO - 2.5]. If you don't remember,
+go back and read over it again!
 
+Maintainers will want you to rebase, so that the work of merging any changes
+made since you forked from the origin is done by you, the submitter, rather than
+them. This also makes the history of the main line easier.
+
+If you didn't understand the above paragraph, then definitely work through the
+rebase section again!
+
+The goal is that all the messy work is done on the branch (which in git is a
+more disposable thing) and the good stuff makes its way into the main line.
+Many projects will delete branches once they have served their purpose, and
+git supports this.
+
+----
+$ git branch -d mybranch
+----
+
+It will even warn you if the branch has not been merged into the branch you are
+currently on!
+
+----
+$ git branch -d abranch
+error: The branch 'abranch' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D abranch'.
+----
+
+
+==== What you have learned
+
+TODO
+
+==== Exercises
+
+1) Submit a pull request to this repository
+(https://github.com/ianmiell/learn-git-the-hard-way) and see what happens!

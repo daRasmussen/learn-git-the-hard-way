@@ -234,5 +234,10 @@ section, where you will cover remote repository management in more depth.
 
 ==== Exercises 
 
-TODO
+1) Look up the man page for git pull and try and follow the description at the
+top. Make sure you try to understand every part.
+
+2) Clone a git repository from GitHub, and fetch and merge a particular branch
+from it into a new branch you have created locally. Draw a diagram of what you
+have done. If the repository doesn't have a branch, find one that does.
 
