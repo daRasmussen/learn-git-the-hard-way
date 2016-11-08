@@ -5,7 +5,7 @@ Now you are going to work with multiple repos.
 Let's do the same as you did before, but create two clones of the origin:
 alice_cloned and bob_cloned.
 
----
+----
 $ rm -rf git_origin alice_cloned bob_cloned
 $ mkdir git_origin
 $ cd git_origin
@@ -16,7 +16,7 @@ $ git commit -am file1
 $ cd ..
 $ git clone git_origin alice_cloned
 $ git clone git_origin bob_cloned
----
+----
 
 Now alice_cloned and bob_cloned have git_origin as the origin remote:
 
