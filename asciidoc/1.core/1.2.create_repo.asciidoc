@@ -184,6 +184,11 @@ Date:   Tue Apr 26 07:46:58 2016 +0100
     Some message
 ----
 
+NOTE: The 'git commit' will bring up your shell's configured editor (in the
+EDITOR environment variable) to save a file that contains the commit message
+for git to store. If you are confused at that point, you may want to look up
+shell EDITOR settings. cf http://askubuntu.com/questions/432524/how-do-i-find-and-set-my-editor-environment-variable
+
 Now that git is aware of this file you can make a change to it and show
 how the local change looks using git diff.
 
