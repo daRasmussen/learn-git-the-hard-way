@@ -1,6 +1,10 @@
-# Learn Git The Hard Way
+# Learn Git The Hard Way (LGTHW)
 
 An introduction to git based on the 'hardway method'.
+
+Praise for LGTHW:
+
+"I learn a lot better walking through examples that show expected output start to finish, since then I can ensure I did it right, and then play around with it to see if I understood. Given that, your book seemed perfect. Thanks for posting on github!"
 
 ## The LxTHW Philosophy
 
