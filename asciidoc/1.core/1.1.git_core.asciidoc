@@ -9,21 +9,32 @@ This section covers:
 - git config
 
 If you're not familiar with source control, it solves a simple problem: how do
-you keep track of changes in your codebase? It's a database of files and the
-histories of their states.
+you keep track of changes in your codebase? You might start by sending each
+other updated files, or email people when files change, or keeping tar files
+in a central location with version numbers. However, whenever the project
+scales in size, you encounter problems:
+
+- If more developers are involved, there is a communication overhead to track all the changes
+- If there are more projects running concurrently on the same codebase, then tracking what is changing what will get complicated
+- If multiple developers are working on the same files at the same time, something needs to co-ordinate the changes
+
+A source control tool is a system that helps manage that complexity.
+
+It's a database of files and the histories of their states. Like a database, you
+have to learn the skills necessary to work on it before you feel the benefit.
 
 I'm old enough to remember a time when people complained about using source
-control at all!
+control at all! These days, using source control for projects is a
 
-Traditional source control tools such as CVS and SVN were centralised. You
-communicated with a server which maintained the state of the system. This could
-mean several things:
+Before git existed, there were what I call 'traditional' source control tools.
+
+Traditional source control tools (such as CVS and SVN) had a centralised
+architecture. You communicated with a server which maintained the state of the
+source. This could mean several things:
 
 - The source control database could get very big
 - The history could get very messy
 - Managing your 'checkouts' of code could get complicated and painful
-
-These code databases are known as 'repositories'.
 
 In the old world, if you checked out source code, that was a copy of some code
 that was 'inferior' in status to the centralised version.
@@ -36,17 +47,20 @@ As far as the user was concerned, code was in one of two states:
 My local changes could not be shared with anyone else until I committed and
 pushed them to the server.
 
-Git, by contrast, is fundamentally distributed. Each git repository is a full
-copy of each other git repositories.
+Git, by contrast, is fundamentally distributed. Each git 'repository' is a full
+copy of each other git repositories. All code databases are known as
+'repositories'.
 
-Remember this:
+Now remember this, because I'll be repeating it often:
 
-ALL GIT REPOSITORIES ARE EQUAL!
+ALL GIT REPOSITORIES ARE BORN EQUAL!
 
-Remember, git was created so people could work on the linux kernel across the
+Git was created so people could work on the Linux kernel across the
 globe, and offline. So there is no concept of a central server that holds the
 golden source. Instead people maintain their own source code database and
 reconcile, copy from and integrate with others'.
+
+As Linus Torvalds likes to joke that he's made the Internet his back up system.
 
 ==== The Four Phases of Git Content
 
@@ -58,7 +72,9 @@ Understanding these 4 stages are key to understanding git.
 
 If this seems over-complicated now, it won't as you grow to know and love git.
 If you've ever been confused by git, it's likely because these stages were
-not understood properly.
+not understood properly. You can get by with git without knowing too much about
+how it works, but you will hit limits in your understanding as you want to do 
+more with it.
 
 ==== Branches
 
@@ -86,7 +102,7 @@ That's all a branch is: a set of changes from a specific point in time.
 
 Earlier I said that:
 
-ALL GIT REPOSITORIES ARE EQUAL!
+ALL GIT REPOSITORIES ARE BORN EQUAL!
 
 In practice, some repositories are more equal than others (eg GitHub). This is
 a matter of convention.
@@ -156,5 +172,7 @@ $ git config --global user.name "Your Name"
 ==== Exercises
 
 1) Install git and set up your config. Set up user.email and user.name using the --global flag.
+
 2) Find out where the config is stored.
+
 3) Research the other config items that are in the file and some of those that are not.
