@@ -25,7 +25,8 @@ $ git init
 
 This initialises a database in the folder '.git' locally.
 Your repository is entirely stored within this .git folder. There are no
-other files elsewhere on your filesystem you need to be concerned about.
+other files elsewhere on your filesystem you need to be concerned about to work
+with this repository.
 (There are config files for git, but these are global to the host. You can
 ignore them for now.)
 
@@ -56,12 +57,16 @@ The HEAD is key - it points to the current branch you are 'on'.
 
 If you look at the file, you will see it points to the refs/heads/master.
 
-This is an internal representation of the default 'master' branch.
+This is an internal representation of the default 'master' branch. Let's have
+a look at that file.
 
 ----
 $ cat HEAD
 ref: refs/heads/master
 ----
+
+The file is a link to the 'refs/heads/master' file (which is the default branch
+assumed by git).
 
 ==== config
 
@@ -82,8 +87,7 @@ $ cat config
 
 ==== git log
 
-If you want to look at the history of this repository, you can run the git log
-command:
+If you want to look at the history of this repository, run the git log command:
 
 ----
 $ cd ..
@@ -101,7 +105,7 @@ $ ls .git/refs/heads/master
 ls: .git/refs/heads/master: No such file or directory
 ----
 
-You need to create a history.
+You need to create a history for 'git log' to return something useful.
 
 ==== git status
 
@@ -116,8 +120,12 @@ Initial commit
 nothing to commit (create/copy files and use "git add" to track)
 ----
 
-It tells you where the HEAD is pointed at (the non-existent master branch), and
-that there is 'nothing to commit'.
+Remember this command! 'git status' has got me out of many a sticky situation
+with git by telling me what is going on, and even advising me on what to do
+next.
+
+Here it's telling you where the HEAD is pointed at (the non-existent master
+branch), and that there is 'nothing to commit'.
 
 Create a file and check status again:
 

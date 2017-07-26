@@ -1,1 +1,26 @@
- 
+=== Summary
+
+In this section you have covered some of the basics of git. You learned about:
+
+- the 'four stages' of the git content lifecycle
+
+- ways git differs from other source control tools.
+
+- how git repositories are born, and that ALL GIT REPOSITORIES ARE BORN EQUAL!
+
+- various basic git commands, including add, commit, clone, branch, and checkout
+
+- the .git folder and some of its contents
+
+- what 'HEAD's and 'detached' heads are
+
+- what merge and merge conflicts are
+
+This is a lot of ground in a relatively short space of time, so make sure you
+have a grasp of all the above concepts. Don't worry if you're not expert or
+fully comforatble with them yet, but remember that if you stumble later it might
+be worth returning to some of these ideas.
+
+In the next section you will cover some more advanced aspects of managing git
+repos locally before you tackle remote git repository management.
+

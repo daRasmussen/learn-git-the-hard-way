@@ -76,6 +76,8 @@ not understood properly. You can get by with git without knowing too much about
 how it works, but you will hit limits in your understanding as you want to do 
 more with it.
 
+Don't worry about memorizing it now, just be aware that it is important.
+
 ==== Branches
 
 In case you've not looked at a SC tool before, a branch is a core concept.
@@ -105,58 +107,72 @@ Earlier I said that:
 ALL GIT REPOSITORIES ARE BORN EQUAL!
 
 In practice, some repositories are more equal than others (eg GitHub). This is
-a matter of convention.
+a matter of convention within a project.
 
-Most people use GitHub as their reference repository, but I could use a GitHub
-repo as a secondary repo for my workflow - it's up to me (indeed I do this for
-some of my private repos).
+Most people use GitHub as their 'reference' or 'master' repository, but I could
+just as easily use a GitHub repo as a 'secondary' or 'downstream' repo for my
+workflow - it's up to me (indeed I do this for some of my private repos).
 
 GitHub's de facto status as a centralised repository (and all the machinery that
 assumes its existence and continuous uptime) is the reason every GitHub
-outage causes a flurry of smart-alec comments about git being decentralised.
+outage causes a flurry of smart-alec comments about git being a decentralised
+source control tool that relies on one central system.
 
-Being a distributed system makes Git more challenging to understand than 
-traditional SCM tools.
+More seriously, being a distributed source control tool makes Git more
+challenging to understand than traditional SCM tools, which is one of the
+reasons why services like GitHub become central references.
 
 Keeping your local repo sync'd with others is one of the challenges of git, but
-the first step to mastering git is understanding this equality of repos.
+the first step to masteringi git is understanding this equality of repos.
 
-==== Other differences with git vs traditional VCSes
+==== Other differences with git vs traditional Verson Control Systems (VCSes)
+
+If you're already familiar with other VCSes, git has some key differences you
+should bear in mind as you learn about it.
 
 - History is more malleable.
 
-You can change the history in your own copy of the repo and others' (if you have
-the appropriate permission to).
+You can change the history in your own copy of the repo and others' (assuming
+you have the appropriate permission to push to them).
 
 - Branching is cheap
 
-In CVS it's very slow to branch a (O(n) to number of files).
+In most traditional VCSes (such as CVS and Subversion) it's very slow to branch
+a repo (O(n) to number of files).
+
 In git it's an O(1) step.
-This makes experimentation much easier.
-Branch deletion is a common and cheap operation.
+
+This makes experimentation with branching much easier.
+
+Branch deletion is also a common and cheap operation.
+
+This changes the typical workflow in a lot of cases.
 
 - Commits are across the whole poject
 
 In contrast to other source control tools, changes are made across the whole
-project, not per file. So moving files involves no loss of history for that
-file.
+project, not per file.
+
+One consequence of this is that moving/renaming files involves no loss of
+history for that file. This is a massive win over CVS.
 
 - No version numbers
 
 Git does not automatically number versions of files/changes. It instead assigns
-a hash (effectively random) to the change.
-
-- File renaming
-
-You can rename files in git and the content will be tracked. This is a massive
-win compared to CVS.
+a hash (effectively random) to the change which is used to refer to it.
 
 
 
 ==== Assumptions
 
-At this point I assume you have git installed, and that you have set your
-details up as per the below. Replace with your email address and username:
+At this point I assume you have
+
+- a command line to work with
+- access to basic Linux GNU tools (such as touch, grep)
+- installed git
+
+Ensure that you have set your details up as per the below commands. Replace with
+your email address and username:
 
 ----
 $ git config --global user.email "you@example.com"
@@ -165,14 +181,15 @@ $ git config --global user.name "Your Name"
 
 ==== What you learned
 
-- setting up git
 - what git is - the four stages
+- setting up git
 - differences to other SC systems
+- ALL GIT REPOSITORIES ARE BORN EQUAL!
 
 ==== Exercises
 
 1) Install git and set up your config. Set up user.email and user.name using the --global flag.
 
-2) Find out where the config is stored.
+2) Find out where the 'global' git config is stored.
 
 3) Research the other config items that are in the file and some of those that are not.
