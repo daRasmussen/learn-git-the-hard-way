@@ -5,15 +5,22 @@ BOOK_NAME:=learngitthehardway
 
 include makefiles/Makefile.constants
 
-.PHONY: chapters $(CHAPTERS) deploy docker
+.PHONY: chapters $(CHAPTERS) deploy docker check_host check_container
+
 
 chapters: $(CHAPTERS) 
 
 $(CHAPTERS):
 	$(MAKE) -C $@
 
-all: clean chapters deploy
+clean:
+	rm -rf $(OUTPUT_DIR)/* $(DEPLOY_DIR)/*
 
+all: clean chapters
+
+
+
+# deploy
 ifeq ($(shell hostname),rothko)
 
 deploy: chapters $(DEPLOY_DIR)
@@ -30,8 +37,15 @@ deploy:
 	$(error not on rothko)
 endif
 
-docker: clean
-	docker build --no-cache .
 
-clean:
-	rm -rf $(OUTPUT_DIR)/* $(DEPLOY_DIR)/*
+
+check_host:
+	# only run in a host
+	if [ -e /.dockerenv ]; then exit 1; fi
+                                                                                                                                                                                                           
+check_container:
+	# only run in a container
+	if [ ! -e /.dockerenv ]; then exit 1; fi                                                                                                                                                               
+        
+docker: clean
+	docker build -t lgthw --no-cache .
