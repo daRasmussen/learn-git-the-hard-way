@@ -7,6 +7,11 @@ include makefiles/Makefile.constants
 
 .PHONY: chapters $(CHAPTERS) deploy docker check_host check_container
 
+run: clean check_host docker deploy
+	docker run -v $(CURDIR)/output:/book/output lgthw make all
+
+docker: clean check_host
+	docker build -t lgthw .
 
 chapters: $(CHAPTERS) 
 
@@ -16,21 +21,21 @@ $(CHAPTERS):
 clean:
 	rm -rf $(OUTPUT_DIR)/* $(DEPLOY_DIR)/*
 
-all: clean chapters
+all: clean check_container chapters
 
+# For forcing runs
+FORCE:
 
 
 # deploy
 ifeq ($(shell hostname),rothko)
 
-deploy: chapters $(DEPLOY_DIR)
+deploy: check_host $(DEPLOY_DIR)
 
 $(DEPLOY_DIR): FORCE
 	cp -R output/9999.learngitthehardway.pdf output/learngitthehardway.pdf
 	cp -R output/learngitthehardway.pdf learngitthehardway.pdf
 	cp -R output/* $(DEPLOY_DIR)
-
-FORCE:
 
 else
 deploy:
@@ -39,13 +44,11 @@ endif
 
 
 
+
+# only run in a host
 check_host:
-	# only run in a host
 	if [ -e /.dockerenv ]; then exit 1; fi
                                                                                                                                                                                                            
+# only run in a container
 check_container:
-	# only run in a container
 	if [ ! -e /.dockerenv ]; then exit 1; fi                                                                                                                                                               
-        
-docker: clean
-	docker build -t lgthw --no-cache .
