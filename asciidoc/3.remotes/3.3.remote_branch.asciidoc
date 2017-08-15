@@ -9,7 +9,7 @@ First, set up a simple origin git repository and clone it, just as you did
 before.
 
 //TODO: Do block listings across the book
-//.Block Listing 3.3.1
+.Block Listing 3.3.1
 ----
 $ rm -rf git_origin git_clone
 $ mkdir git_origin

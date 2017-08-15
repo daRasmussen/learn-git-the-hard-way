@@ -1,29 +1,40 @@
-TODO
 === Summary
 
+In this section you have looked at more advanced local repository management and
+techniques. You covered:
 
-//CHAPTER 1 SUMMARY EXAMPLE
-//In this section you have covered some of the basics of git. You learned about:
-//
-//- the 'four stages' of the git content lifecycle
-//
-//- ways git differs from other source control tools.
-//
-//- how git repositories are born, and that ALL GIT REPOSITORIES ARE BORN EQUAL!
-//
-//- various basic git commands, including add, commit, clone, branch, and checkout
-//
-//- the .git folder and some of its contents
-//
-//- what 'HEAD's and 'detached' heads are
-//
-//- what merge and merge conflicts are
-//
-//This is a lot of ground in a relatively short space of time, so make sure you
-//have a grasp of all the above concepts. Don't worry if you're not expert or
-//fully comforatble with them yet, but remember that if you stumble later it might
-//be worth returning to some of these ideas.
-//
-//In the next section you will cover some more advanced aspects of managing git
-//repos locally before you tackle remote git repository management.
+- git stash, and how it is a special kind of branch
 
+- cherry-picking, and how you can use it to copy specific commits around
+
+- git rebasing, and what 'fast-forwarding' means
+
+- how to 'git bisect'
+
+- using the interactive 'git add' option to be more selective
+
+- what the 'reflog' is
+
+These more advanced techniques are what typically separates the casual user
+from the git master. Don't worry if you can't perfectly recall it all now, it
+was a lot to take in. But if you work with code a lot you will likely come
+across many situtations where these techniques are useful.
+
+The ones I use most frequently are:
+
+- stashing
+
+- rebasing
+
+- cherry-picking
+
+in that order. The others I use more rarely, and often have to look up how to
+do them each time. But your use cases might differ: if you are running the
+tests for a complex project, then you might use bisect very regularly to
+identify 'who broke the build'!
+
+Now you've covered the key areas for managing your local repository, you're
+going to get to the distributed part of git. Working with other repositories is
+the most confusing part of using git, and you will gain an understanding of
+what's going on that will lay the foundations of a more throrough git
+competency.

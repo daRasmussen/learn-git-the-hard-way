@@ -88,21 +88,52 @@ The first command adds a line to the README.md file. The second commits the
 change you made to this new branch.
 
 
-==== Understand the relationships
+==== Understand the Relationships
 
 Make sure these relationships are clear in your mind! Here is a diagram that
 may help:
 
-                                                                                                                  
 image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200] 
 
 
+==== Specify Remote Branch
 
+Another way to push your branch (and one that may make the relationship clearer)
+is the following:
 
-TODO: commit
-//git commit
-//git push origin yourbranchname:yourbranchname
-TODO: what you have done
+----
+$ echo 'another change to the README' >> README.md
+$ git commit -am 'another change to the README'
+$ git push -u origin myfirstgitbranch:myfirstgitbranch
+----
+
+What's changed here is that we have added 'myfirstgitbranch:' to the branch
+part of the command.
+
+What this does is indicate that the local branch 'myfirstgitbranch' should be
+pushed to the remote branch 'myfirstgitbranch'. The colon separates the two
+branch names.
+
+Of course, in this case the branch names are the same (myfirstgitbranch), but
+this need not be the case. By default, git assumes you want to match the names
+on the local and the remote repository, but it's useful to get into the habit
+of typing the full specification with the colon, because there are times when
+it's useful to know that this mapping is possible.
+
+The most common use I have for this knowledge is to delete a remote branch.
+
+To practice this, create a tmpbranch on your local and remote repository.
+
+----
+$ git branch tmpbranch
+$ git checkout tmpbranch
+$ echo 'a temp change on tmpbranch' >> README.md
+$ git commit -am 'a temp change on tmpbranch'
+$ git push -u origin tmpbranch:tmpbranch
+----
+
+TODO: delete remote branch
+
 
 
 ==== Make Pull Request
@@ -114,6 +145,8 @@ pull request.
 Go to GitHub in a browser and view your repository:
 
 https://github.com/YOURUSERNAME/learn-git-the-hard-way 
+
+First, click on your branch 
 
 TODO: Go to the branch
 TODO: Click make pull request (?). Fill out the form
@@ -162,3 +195,10 @@ TODO
 
 1) Submit a pull request to this repository
 (https://github.com/ianmiell/learn-git-the-hard-way) and see what happens!
+
+2) Create a branch on your local repository and map it to a branch on the
+remote repository.
+
+3) Delete the remote repository branch that you have mapped in 2).
+
+4) Delete the local branch that you have created in 2).
