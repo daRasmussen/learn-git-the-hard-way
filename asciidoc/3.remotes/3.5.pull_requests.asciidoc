@@ -11,7 +11,8 @@ Fortunately you've covered them, so you are ready!
 - repository relationships
 - reconciling remote branches
 
-A pull request is a request from a user for another user 
+A pull request is a request from a user for another user to accept a change that
+has been committed elsewhere.
 
 This request can come in any form at all that makes sense. You can send an email
 with the diffs to the maintainer, fork and branch, then send a reference to the
@@ -19,6 +20,12 @@ branch, branch on the maintainer's repo and mail them the branch name,
 put a request in plain English on a post-it - whatever works!
 
 I'm going to focus here on the standard GitHub pull request model.
+
+****
+NOTE: The GitHub pull request is not necessarily identical to other
+applications' (or workflows') pull request methods. Usually it doesn't come up,
+but remember that details can differ between them.
+****
 
 ==== GitHub pull requests
 
@@ -112,7 +119,7 @@ part of the command.
 
 What this does is indicate that the local branch 'myfirstgitbranch' should be
 pushed to the remote branch 'myfirstgitbranch'. The colon separates the two
-branch names.
+branch names. The first is the 'local' one, and the second the 'remote' one.
 
 Of course, in this case the branch names are the same (myfirstgitbranch), but
 this need not be the case. By default, git assumes you want to match the names
@@ -129,11 +136,23 @@ $ git branch tmpbranch
 $ git checkout tmpbranch
 $ echo 'a temp change on tmpbranch' >> README.md
 $ git commit -am 'a temp change on tmpbranch'
-$ git push -u origin tmpbranch:tmpbranch
+$ git push origin tmpbranch:tmpbranch
 ----
 
-TODO: delete remote branch
+Now that you've created the 'tmpbranch' on the remote repository, you might
+decide you've been too hasty, and that tmpbranch is not needed on the remote.
 
+To delete it on the remote, you specify nothing before the colon, like this:
+
+----
+$ git push origin :tmpbranch
+----
+
+This has the effect of removing the branch on the remote repository. If you
+look, it's still there on your local repository, so nothing has been lost.
+
+Quite often, projects on GitHub can accumulate a lot of branches, and this
+method can be a handy quick way to tidy up these branches.
 
 
 ==== Make Pull Request
@@ -146,11 +165,28 @@ Go to GitHub in a browser and view your repository:
 
 https://github.com/YOURUSERNAME/learn-git-the-hard-way 
 
-First, click on your branch 
+The instructions for creating a pull request are here:
 
-TODO: Go to the branch
-TODO: Click make pull request (?). Fill out the form
-TODO: What to do next
+https://help.github.com/articles/creating-a-pull-request/
+
+I won't repeat it here, because the workflow can change. But in essence, the
+general process is to:
+
+- Go to your branch
+
+- Generate a new pull request
+
+- Fill out the form
+
+- Wait
+
+- Celebrate your PR's acceptance into the code, or chase the maintainer (nicely!) for an update
+
+You can create a pull request 'across forks' (a request to the upstream
+(original) repository) or against another branch in your GitHub repository.
+'Across forks' is what's most commonly meant by a public GitHub PR, a request to
+accept a change made to a repository under your control to a repository under
+someone else's (usually more 'senior' to the project).
 
 
 === Pull Requests in Practice - Rebasing
@@ -158,8 +194,8 @@ TODO: What to do next
 Maintainers will often ask that you rebase your branch to the main branch before
 making a pull request.
 
-You will remember rebases from section [TODO - 2.5]. If you don't remember,
-go back and read over it again!
+You will remember rebases from section 2.5. If you don't remember, you might
+want to go back and read over it again!
 
 Maintainers will want you to rebase, so that the work of merging any changes
 made since you forked from the origin is done by you, the submitter, rather than
@@ -189,7 +225,20 @@ If you are sure you want to delete it, run 'git branch -D abranch'.
 
 ==== What you have learned
 
-TODO
+In this section you've finally got to a key part of git culture. Pull requests
+are talked about everywhere, and it's vital that you get comfortable with what
+they are if you are going to collaborate with others.
+
+You've also snuck in a useful bit of knowledge about deleting remote branches,
+and mentioned the importance of rebasing again.
+
+The best thing you can do at this point for your development is start using git
+in anger on a real project. If you can't find one, feel free to interact with
+the author on the project that contains this book:
+
+https://github.com/ianmiell/learn-git-the-hard-way
+
+The next best thing you can do is continue reading :)
 
 ==== Exercises
 
