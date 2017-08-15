@@ -9,7 +9,7 @@ First, set up a simple origin git repository and clone it, just as you did
 before.
 
 //TODO: Do block listings across the book
-.Block Listing 3.3.1
+//.Block Listing 3.3.1
 ----
 $ rm -rf git_origin git_clone
 $ mkdir git_origin
@@ -368,8 +368,24 @@ $ git branch -vv
 
 ==== What you learned
 
-TODO
+In this section you added to your knowledge about git commit. You:
+
+- Created a branch and pushed it to a remote branch
+
+- Tried to push to a remote with different content
+
+- How to manage branches from a remote repository locally, and vice versa
+
+- What branch tracking is
+
+- What an upstream repository is
 
 ==== Exercises
 
-TODO
+1) Create a repository on Github
+
+2) Add content to it
+
+3) Clone the repository, create a branch, and push it remotely
+
+4) View the branch on GitHub
