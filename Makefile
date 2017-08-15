@@ -7,7 +7,7 @@ include makefiles/Makefile.constants
 
 .PHONY: chapters $(CHAPTERS) deploy docker check_host check_container
 
-run: clean check_host docker deploy
+run: clean check_host docker
 	docker run -v $(CURDIR)/output:/book/output lgthw make all
 
 docker: clean check_host
@@ -30,7 +30,7 @@ FORCE:
 # deploy
 ifeq ($(shell hostname),rothko)
 
-deploy: check_host $(DEPLOY_DIR)
+deploy: check_host run $(DEPLOY_DIR)
 
 $(DEPLOY_DIR): FORCE
 	cp -R output/9999.learngitthehardway.pdf output/learngitthehardway.pdf
@@ -39,6 +39,7 @@ $(DEPLOY_DIR): FORCE
 
 else
 deploy:
+	shell hostname
 	$(error not on rothko)
 endif
 
