@@ -9,8 +9,8 @@ In part 4 you will cover:
 
 - git log (advanced usage)
 
-- bare repos
-- working through history
-- re-initialising a repo
-- rebase/squashing
+- bare repos TODO
+- working through history TODO
+- re-initialising a repo TODO
+- rebase/squashing TODO
 - internals?

@@ -1,3 +1,8 @@
-
-
 Start with error trying to push to origin
+
+- find example from early exercise with two repos, one cloned from the other
+- try and push?
+
+git config has a bare = false line.
+
+

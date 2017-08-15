@@ -12,8 +12,12 @@ A familiarity with the 'git log' command can not only save you a lot of time,
 it can speed up the git learning process, and is available wherever git is, so
 you're not dependent on a particular tool to use git effectively.
 
+==== A 'realistic' log history
+
 First, clone a codebase with a past. My rather messy shutit project is a good
-example to look at
+example to look at. Not because of any careful curation or attention to detail
+in its construction, but rather for the messiness of its history as I've 
+become better acquainted with git.
 
 ----
 $ git clone https://github.com/ianmiell/shutit.git
@@ -379,4 +383,19 @@ $ git log --graph --oneline --all --decorate --simplify-by-decoration --pretty=
 | |/    | * * 
 ----
 
-TODO: conclude
+==== What you've learned
+
+In this section you've gone beyond the basics with the git log. For me, this
+is one of the most useful commands, as it gives you an almost universal ability
+to query the history of the repository you're looking at. As I triage git
+problems at work, 'git log --graph' commands get me up to speed very quickly
+with what's gone on and what kind of project I'm dealing with.
+
+==== Exercises                                                                                                                                                                                             
+
+1) Read the 'git log' man page. Don't worry about understanding it all, it can
+read as quite obscure, and is not exactly a page-turner.
+
+Rather, get a feel for what the log command can do - you never know when a bell
+can ring, and that flag you saw turns out to be the lifesaver to your day.
+
