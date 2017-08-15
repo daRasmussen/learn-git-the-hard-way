@@ -240,4 +240,3 @@ top. Make sure you try to understand every part.
 2) Clone a git repository from GitHub, and fetch and merge a particular branch
 from it into a new branch you have created locally. Draw a diagram of what you
 have done. If the repository doesn't have a branch, find one that does.
-
