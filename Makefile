@@ -8,7 +8,7 @@ include makefiles/Makefile.constants
 .PHONY: chapters $(CHAPTERS) deploy docker check_host check_container
 
 run: clean check_host docker
-	docker run -v $(CURDIR)/output:/book/output lgthw make all
+	docker run -v $(CURDIR)/output:/book/output lgthw /bin/sh -c 'make all && chmod -R 777 /book/output'
 
 docker: clean check_host
 	docker build -t lgthw .
