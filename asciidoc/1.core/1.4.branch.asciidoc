@@ -32,6 +32,8 @@ $ git commit -am 'feature change'            # add, commit and message
 $ git log --decorate --graph --oneline --all # graphical view of all branches
 $ git checkout master                        # checkout the master branch
 $ cat file1                                  # The feature change is not there
+$ cd -                                       # Exit repository
+$ rm -rf 1.4.1                               # Cleanup
 ----
 
 This is the final state of the commit tree.
@@ -62,9 +64,10 @@ The HEAD pointer can be moved to an arbitrary point (git checkout does this).
 The next set of commands will check out the repository this 
 
 ----
-$ mkdir lgthw
-$ cd lgthw
+$ mkdir 1.4.2
+$ cd 1.4.2
 $ git clone https://github.com/ianmiell/learn-git-the-hard-way.git
+$ cd learn-git-the-hard-way
 $ git log 
 $ git checkout 76d43b6b66f295c0a6c8fc738a3487cd31aea136 
 Note: checking out '76d43b6b66f295c0a6c8fc738a3487cd31aea136'.
@@ -83,7 +86,7 @@ $ git status
 HEAD detached at 76d43b6
 nothing to commit, working directory clean
 $ cd -
-$ rm -rf lgthw
+$ rm -rf 1.4.2
 ----
 
 'HEAD detached' means you are in a position associated with a branch. 

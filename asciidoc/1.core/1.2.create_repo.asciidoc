@@ -40,7 +40,6 @@ hooks
 info
 objects
 refs
-$ cd ..
 ----
 
 It's not part of the scope of this course to go into detail about the git

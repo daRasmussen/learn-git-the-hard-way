@@ -19,6 +19,9 @@ deleting the content and seeing what your options are to recover from the
 repository.
 
 ----
+$ rm -rf 1.3.1
+$ mkdir -p 1.3.1
+$ cd 1.3.1
 $ git clone https://github.com/ianmiell/shutit
 $ cd shutit
 $ ls .git
@@ -98,6 +101,8 @@ $ rm -rf *          # delete all the files again
 $ git add .         # added to staging/index area ready to commit again
 $ git reset --hard  # does a re-check out of the whole repository, discarding working directory and changes to the index
 $ git status        # you now have a consistent state between 1 (local changes) and 3 (committed)
+$ cd ../..          # revert to original directory
+$ rm -rf 1.3.1      # remove temp folder
 ----
 
 
