@@ -60,34 +60,36 @@ In this scenario the 'bug' is the line '63', but you don't know that yet. All
 you know is that you can tell if the bug is in the code with the shell script:
 
 ----
-rm -rf git-bisect && mkdir -p git-bisect && cd git-bisect
-git init
-touch projectfile
-git add projectfile
-for ((i=1;i<=100;i++)); do echo $i >> projectfile; git commit -am "A$i"; done
-git log
-git bisect start
-git bisect bad
-git status
-git checkout HEAD~99   # Check out the first checkout
-git log
-git status
-git bisect good
-git log                # Now at A50
-git status
-git bisect good        
-git log                # Now at A75
-git bisect bad         
-git log                # Now at A62
-git bisect good        
-git log                # Now at A68
-git bisect bad         
-git log                # Now at A65
-git bisect bad        
-git log                # Now at A64
-git bisect bad         
-git log                # Now at A63
-git bisect bad
+$ rm -rf 2.6.1
+$ mkdir -p 2.6.1
+$ cd 2.6.1
+$ git init
+$ touch projectfile
+$ git add projectfile
+$ for ((i=1;i<=100;i++)); do echo $i >> projectfile; git commit -am "A$i"; done
+$ git log
+$ git bisect start
+$ git bisect bad
+$ git status
+$ git checkout HEAD~99   # Check out the first checkout
+$ git log
+$ git status
+$ git bisect good
+$ git log                # Now at A50
+$ git status
+$ git bisect good        
+$ git log                # Now at A75
+$ git bisect bad         
+$ git log                # Now at A62
+$ git bisect good        
+$ git log                # Now at A68
+$ git bisect bad         
+$ git log                # Now at A65
+$ git bisect bad        
+$ git log                # Now at A64
+$ git bisect bad         
+$ git log                # Now at A63
+$ git bisect bad
 # 79583459dc6061bd91d55cfcf8c34fae845f836b is the first bad commit
 # commit 79583459dc6061bd91d55cfcf8c34fae845f836b
 # Author: Ian Miell <ian.miell@gmail.com>
@@ -103,7 +105,7 @@ The bisect is complete, and has reported 79583459dc6061bd91d55cfcf8c34fae845f836
 You can get the diff between this commit and its parent by using the '^' operator with diff:
 
 ----
-git diff 79583459dc6061bd91d55cfcf8c34fae845f836b^ 79583459dc6061bd91d55cfcf8c34fae845f836b
+$ git diff 79583459dc6061bd91d55cfcf8c34fae845f836b^ 79583459dc6061bd91d55cfcf8c34fae845f836b
 # diff --git a/projectfile b/projectfile
 # index aea6bd8..55200b3 100644
 # --- a/projectfile

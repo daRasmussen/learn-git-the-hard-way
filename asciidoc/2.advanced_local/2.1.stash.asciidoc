@@ -137,6 +137,13 @@ Dropped refs/stash@{0} (279ee87c68798caaf2ea3d45fcfa0ac42df6ba4b)
 which 'pops' the zero-numbered change off the stash stack and restores the
 changes I stashed, applied to wherever I've ended up.
 
+Now you can cleanup the previously-created folder:
+
+----
+$ cd -
+$ rm -rf 2.1.1
+----
+
 ==== Choosing your stash
 
 You may be wondering at this point how you manage multiple stashes.

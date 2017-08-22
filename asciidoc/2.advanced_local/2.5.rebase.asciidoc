@@ -88,29 +88,29 @@ a slightly different scneario that uses the same rebase command.
 Let's walk through the above scenario with git commands.
 
 ----
-rm -rf 2.5.1
-mkdir 2.5.1
-cd 2.5.1
-git init
-echo A > file1
-git add file1
-git commit -am A
-echo B >> file1
-git commit -am B
-echo C >> file1
-git commit -am C
+$ rm -rf 2.5.1
+$ mkdir 2.5.1
+$ cd 2.5.1
+$ git init
+$ echo A > file1
+$ git add file1
+$ git commit -am A
+$ echo B >> file1
+$ git commit -am B
+$ echo C >> file1
+$ git commit -am C
 
-git checkout -b feature1
-echo D >> file1
-git commit -am D
+$ git checkout -b feature1
+$ echo D >> file1
+$ git commit -am D
 
-git checkout master
-echo E >> file1
-git commit -am E
-echo F >> file1
-git commit -am F
+$ git checkout master
+$ echo E >> file1
+$ git commit -am E
+$ echo F >> file1
+$ git commit -am F
 
-git log --all --decorate --graph
+$ git log --all --decorate --graph
 # * commit baacf6fb432967a9d404858268928278df40c7a3 (feature1)
 # | Author: Ian Miell <ian.miell@gmail.com>
 # | Date:   Wed Jun 29 19:02:09 2016 +0100
@@ -155,8 +155,8 @@ image::diagrams/2.5.3.mermaid.png[]
 You go to feature1 and rebase:
 
 ----
-git checkout feature1
-git rebase master
+$ git checkout feature1
+$ git rebase master
 # First, rewinding head to replay your work on top of it...
 # Applying: D
 # Using index info to reconstruct a base tree...
@@ -172,11 +172,11 @@ git rebase master
 # When you have resolved this problem, run "git rebase --continue".
 # If you prefer to skip this patch, run "git rebase --skip" instead.
 # To check out the original branch and stop rebasing, run "git rebase --abort".
-vi file1
-git add file1
-git rebase --continue
+$ vi file1
+$ git add file1
+$ git rebase --continue
 # Applying: D
-git log --all --decorate --graph 
+$ git log --all --decorate --graph 
 * commit eff7c3a62c8a2ce74302207db014b0db82c22d4e (HEAD, feature1)
 | Author: Ian Miell <ian.miell@gmail.com>
 | Date:   Wed Jun 29 19:02:09 2016 +0100
@@ -218,13 +218,13 @@ git log --all --decorate --graph
 Now the changes are in one line you can merge the feature1 master branch.
 
 ----
-git checkout master
-git merge feature1
+$ git checkout master
+$ git merge feature1
 # Updating cb548ab..eff7c3a
 # Fast-forward
 #  file1 | 1 +
 #  1 file changed, 1 insertion(+)
-git log --all --decorate --graph 
+$ git log --all --decorate --graph 
 # * commit eff7c3a62c8a2ce74302207db014b0db82c22d4e (HEAD, master, feature1)
 # | Author: Ian Miell <ian.miell@gmail.com>
 # | Date:   Wed Jun 29 19:02:09 2016 +0100
@@ -268,7 +268,7 @@ git log --all --decorate --graph
 What's interesting about the above is this:
 
 ----
-git merge feature1
+$ git merge feature1
 # Updating cb548ab..eff7c3a
 # Fast-forward
 #  file1 | 1 +
@@ -278,6 +278,15 @@ git merge feature1
 Because the changes are in a line, no new changes need to be made - the master
 branch pointer merely needs to be 'fast-forwarded' to the same point as 
 feature1! The HEAD pointer, naturally, moves with the branch you're on (master).
+
+==== Cleanup
+
+To clean up, run:
+
+----
+$ cd ..
+$ rm -rf 2.5.1
+----
 
 
 ==== What you learned
