@@ -16,7 +16,9 @@ Let's look at a concrete example.
 Let's say Alice maintains a library:
 
 ----
-$ rm -rf alicelib && mkdir alicelib && cd alicelib
+$ rm -rf 3.4.1
+$ mkdir -p 3.4.1
+$ cd 3.4.1
 $ git init
 $ echo 'A' > file1
 $ git add file1
@@ -79,6 +81,7 @@ You are going to assume you have the 'alicelib' repository created as above.
 Now create Bob's repository:
 
 ----
+$ cd ..
 $ rm -rf bob_repo && mkdir bob_repo && cd bob_repo
 $ git init
 $ echo 'source alicelib' > file1
@@ -196,8 +199,10 @@ NOTE: If more than one remote has the same name, git will not perform this
 matching. In that case you would have to run the full command:
 ****
 
+Alternatively, you could track a completely different branch if you specify it:
+
 ----
-$ git checkout -b experimental --track origin/master
+$ git checkout -b alicemaster --track origin/master
 ----
 
 assuming it's the origin's master branch you want to track.

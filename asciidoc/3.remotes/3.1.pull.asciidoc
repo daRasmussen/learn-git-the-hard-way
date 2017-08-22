@@ -221,6 +221,7 @@ To clean up, run:
 ----
 $ cd ../..
 $ rm -rf 3.1.1
+----
 
 ==== What you've learned 
 
