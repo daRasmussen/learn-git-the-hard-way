@@ -11,7 +11,9 @@ before.
 //TODO: Do block listings across the book
 //.Block Listing 3.3.1
 ----
-$ rm -rf git_origin git_clone
+$ rm -rf 3.3.1
+$ mkdir -p 3.3.1
+$ cd 3.3.1
 $ mkdir git_origin
 $ cd git_origin
 $ git init
