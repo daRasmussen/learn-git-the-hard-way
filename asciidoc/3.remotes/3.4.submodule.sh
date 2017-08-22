@@ -1,0 +1,356 @@
+=== Git Submodules
+
+Submodules are a useful concept, and often seen in real projects.
+
+Git submodules can be very confusing if you stumble into them without much
+preparation or experience. Following this tutorial, you should have a good
+understanding for a simple submodule workflow and what is going on when you
+run the core submodule commands.
+
+Sometimes you want to 'include' one repository in another, but not simply copy
+it over. Submodules allow you to manage the separate codebase with your
+repository without changing the other repository.
+
+Let's look at a concrete example.
+
+Let's say Alice maintains a library:
+
+----
+$ rm -rf alicelib && mkdir alicelib && cd alicelib
+$ git init
+$ echo 'A' > file1
+$ git add file1
+$ git commit -am 'A'
+$ git checkout -b experimental      # Branch to experimental
+$ echo 'C - EXPERIMENTAL' >> file1
+$ git commit -am EXPERIMENTAL
+$ git checkout master
+$ echo 'B' >> file1
+$ git commit -am 'B'
+----
+
+Alice's library's history looks like this:
+
+----
+A
+|\
+| C (experimental)
+|
+B (master)
+----
+
+
+Now Bob wants to use Alice's library for his own code, but specifically wants to
+use what's on the experimental branch.
+
+One option is to copy the code over directly, but that seems to be against the
+spirit of git.
+
+If an improvement is made on the experimental branch, or Bob wants to move later
+to follow what's on the master branch, then he must copy over the code he wants.
+For one file it might be manageable, but for a more realistic and large project,
+managing this will be completely impractical.
+
+Another option is to check out the code in another folder and link to it in
+some predictable way in the code (eg your code might run
+'source ../alice_experimental). Again,
+this causes management problems, as the user checking out the source must
+remember to keep code outside this git repository in a certain place for it
+all to work.
+
+==== git submodule
+
+Git submodules solve these 'external repository' dependency issues, with a
+little overhead. Now that you understand local and remote repositories, it will
+be easier to grasp how submodules work.
+
+They use git commands to track copies of other repositories within your
+repository. The tracking is under your control (so you decide when it gets
+'updated', regardless of how the other repository moves on), and the tracking is
+done within a file that is stored with your git repository.
+
+WARNING: git submodules can be confusing if you don't follow a few basic
+patterns or understand how they work, so it's worth paying attention to this.
+
+Let's make this clearer with a walkthrough.
+
+You are going to assume you have the 'alicelib' repository created as above.
+
+Now create Bob's repository:
+
+----
+$ rm -rf bob_repo && mkdir bob_repo && cd bob_repo
+$ git init
+$ echo 'source alicelib' > file1
+$ git add file1
+$ git commit -am 'sourcing alicelib'
+$ echo 'do something with alicelib experimental' >> file1
+$ git commit -am 'using alicelib experimental'
+$ cat file1
+source alicelib
+do something with alicelib
+----
+
+Now you have alice's repo referenced in bob_repo's code, but bob_repo has no link
+to alice_repo's code.
+
+The first step to including alicelib in bob_repo is to initialise submodules:
+
+----
+$ git submodule init
+----
+
+Once a git submodule init has been performed, you can 'add' the submodule you
+want:
+
+----
+$ git submodule add ../alicelib
+Cloning into 'alicelib'...
+done.
+----
+
+A new file has been created (.gitmodules), and the folder alicelib has been
+created:
+
+----
+$ ls -a
+.		..		.git		.gitmodules	alicelib	file1
+----
+
+alicelib has been clone just as any other git repository would be anywhere
+else:
+
+----
+$ ls -a alicelib/
+.	..	.git	file1
+----
+
+but the .gitmodules file tracks where the submodule comes from:
+
+----
+$ cat .gitmodules 
+[submodule "alicelib"]
+	path = alicelib
+	url = ../alicelib
+----
+
+If you get confused, git provides a useful 'status' command for gitmodules:
+
+----
+$ git submodule status
+ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f alicelib (heads/master)
+----
+
+Now, you may have some questions at this point, such as:
+
+- How do you get to the experimental branch?
+- What happens if alice's branch changes? Does my code automatically update?
+- What if I make a change to alicelib within my repository submodule checkout?
+Can I push those to alice's? Can I keep those private to my repository?
+- What if there are conflicts between these repositories?
+
+... and so on. I certainly had these questions when I came to git submodules,
+and with some trial and error it took me some time to understand what was going
+on, so I really recommend playing with these simple examples to get the 
+relationships clear in your mind.
+
+
+==== Get the experimental branch
+
+Since your 'alicelib' submodule is a straightforward clone of the remote
+'alicelib' origin, you have the master branch and the origin's experimental
+branch:
+
+----
+$ git branch -a -vv
+* master                      ff75b7f [origin/master] B
+  remotes/origin/HEAD         -> origin/master
+  remotes/origin/experimental 969b840 C EXPERIMENTAL
+  remotes/origin/master       ff75b7f B
+----
+
+You are on the master branch (indicated with a *), which is mapped to
+remotes/origin/master. 
+
+****
+NOTE: the refs (eg ff75b7f) may be different in your output
+****
+
+You do not have an experimental branch locally. However, if you checkout a 
+branch that does not exist locally but does exist remotely, git will assume you
+want to track that remote branch.
+
+----
+$ git checkout experimental
+Branch experimental set up to track remote branch experimental from origin.
+Switched to a new branch 'experimental'
+$ git branch -a -vv
+* experimental                969b840 [origin/experimental] C EXPERIMENTAL
+  remotes/origin/HEAD         -> origin/master
+  remotes/origin/experimental 969b840 C EXPERIMENTAL
+  remotes/origin/master       ff75b7f B
+----
+
+****
+NOTE: If more than one remote has the same name, git will not perform this
+matching. In that case you would have to run the full command:
+****
+
+----
+$ git checkout -b experimental --track origin/master
+----
+
+assuming it's the origin's master branch you want to track.
+
+
+==== Git tracks the submodule's state
+
+Now that you've checked out and tracked the remote experimental branch in your
+submodule, a change has taken place in bob_repo. If you return to bob_repo's
+root folder and run 'git diff' you will see that the subproject commit of
+'alicelib' has changed:
+
+----
+$ cd ..
+$ git diff
+diff --git a/alicelib b/alicelib
+index ff75b7f..969b840 160000
+--- a/alicelib
++++ b/alicelib
+@@ -1 +1 @@
+-Subproject commit ff75b7fc52c3a7d52d89a47fd27d7d22ed280b6f
++Subproject commit 969b840142f389de55357350a6f26f0825e02393
+----
+
+The commit identifier now matches the experimental. 
+
+Note that bob_repo tracks the _specific commit_ and not the remote branch.
+This means that changes to alicelib in the origin repository are not
+automatically tracked within bob_repo's submodule.
+
+You want to commit this change to the submodule:
+
+----
+$ git commit -am 'alicelib moved to experimental'
+[master 1f67953] alicelib moved to experimental
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 alicelib
+----
+
+==== Alice makes a change
+
+Alice now spots a bug in her experimental branch that she wants to fix:
+
+----
+$ cd ../alicelib
+$ git checkout experimental
+$ echo 'D' >> file1
+$ git commit -am 'D - a fix added'
+----
+
+Now there is a mismatch between alicelib's experimental branch and bob_repo's
+experimental branch.
+
+----
+$ cd ../bob_repo/alicelib
+$ git status
+On branch experimental
+Your branch is up-to-date with 'origin/experimental'.
+nothing to commit, working directory clean
+----
+
+git status reports that bob_repo's alicelib is up-to-date with
+origin/experimental. Remember that origin/experimental is the locally stored
+representation of alicelib's experimental branch. Since you have not contacted
+alicelib to see if there are any updates, this is still the case.
+
+To get the latest changes you can perform a fetch and merge, or save time by
+running a 'pull', which does both:
+
+----
+$ git pull
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From /Users/imiell/gitcourse/alicelib
+   969b840..1a725f6  experimental -> origin/experimental
+Updating 969b840..1a725f6
+Fast-forward
+ file1 | 1 +
+ 1 file changed, 1 insertion(+)
+----
+
+****
+GOTCHAS: Generally I would advise not editing repositories that are checked
+out as submodules until you are more experienced with git. You quickly may find
+yourself in a 'detached HEAD' state and confused about what you've done.
+****
+
+==== Checking out a project with submodules
+
+Submodules have a special status within git repositories. Since they are both
+included within a repository and at the same time referencing a remote
+repository, a simple clone will not check out the included submodule:
+
+----
+$ cd ../..
+$ rm -rf bob_repo_cloned
+$ git clone bob_repo bob_repo_cloned
+$ cd bob_repo_cloned
+$ ls -1
+alicelib
+file1
+$ cd alicelib
+$ ls ## No output
+----
+
+Alicelib is not there. Confusingly, 'git submodule status' gives you little clue
+what's going on here.
+
+----
+$ git submodule status
+-969b840142f389de55357350a6f26f0825e02393 alicelib
+----
+
+The dash (or minus sign) at the front indicates the submodule is not cheked out.
+Only by running a 'git submodule init' and a 'git submodule update' can you
+retrieve the appropriate submodule repository:
+
+----
+$ git submodule init
+Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
+$ git submodule update
+Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
+$ git submodule status
+969b840142f389de55357350a6f26f0825e02393 alicelib (969b840)
+----
+
+Now the submodule status has no dash, and a commit ID has been added to the
+output (969b840).
+
+==== git clone --recursive
+
+Fortunately there is an easier way. You can clone the repository with a 
+--recursive flag to automatically init and update any submodules (and submodules
+of those submodules ad infinitum) within the cloned repo:
+
+----
+$ cd ..
+$ git clone --recursive bob_repo bob_repo_cloned_recursive
+Cloning into 'bob_repo_cloned'...
+done.
+Submodule 'alicelib' (/Users/imiell/gitcourse/alicelib) registered for path 'alicelib'
+Cloning into 'alicelib'...
+done.
+Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393'
+----
+
+
+==== You have learned
+
+- How to set up git submodules
+- How to add a submodule to a repo
+- How to track remote branches
+- How to checkout submodules with init and update
+- How to checkout submodules with recursive

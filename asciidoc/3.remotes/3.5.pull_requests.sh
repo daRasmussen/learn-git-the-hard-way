@@ -1,0 +1,253 @@
+=== Pull Requests
+
+In essence pull requests are very simple, but they can get confusing to newbies
+because of all the other concepts that are related and can complicate discussion
+about them.
+
+Fortunately you've covered them, so you are ready!
+
+- remotes
+- branches
+- repository relationships
+- reconciling remote branches
+
+A pull request is a request from a user for another user to accept a change that
+has been committed elsewhere.
+
+This request can come in any form at all that makes sense. You can send an email
+with the diffs to the maintainer, fork and branch, then send a reference to the
+branch, branch on the maintainer's repo and mail them the branch name, 
+put a request in plain English on a post-it - whatever works!
+
+I'm going to focus here on the standard GitHub pull request model.
+
+****
+NOTE: The GitHub pull request is not necessarily identical to other
+applications' (or workflows') pull request methods. Usually it doesn't come up,
+but remember that details can differ between them.
+****
+
+==== GitHub pull requests
+
+For this section 
+
+The standard GitHub model is to:
+
+- Fork the repository
+- Make a branch on the forked repository
+- Make changes on this branch
+- Make a pull request to the original repository to merge this branch's changes
+
+Your task now is to do this on the GitHub repository!
+
+There is a file called 'records/trained_users.txt' in the repository of this
+course. You're going to add your name to it and raise that change as a 
+Pull Request.
+
+Remember that this is just one model of pull request! I will talk about
+other models later.
+
+If you haven't created a GitHub account, please do so now. It's free. Go to
+https://github.com and sign up.
+
+===== Fork the Repository
+
+Next you need to fork the repository. To do this, go to the
+'learn-git-the-hard-way' repository on GitHub:
+
+https://github.com/ianmiell/learn-git-the-hard-way 
+
+and click on the 'Fork' button near the top.
+
+You will now have created a fork of the repository in your own account. Replace
+YOURUSERNAME with your username in the below URL and you should see the same 
+repository homepage:
+
+https://github.com/YOURUSERNAME/learn-git-the-hard-way 
+
+===== Branch on the Forked Repository
+
+To make a branch on your forked repository, type in these commands:
+
+----
+$ git clone https://github.com/YOURUSERNAME/learn-git-the-hard-way
+$ cd learn-git-the-hard-way
+$ git checkout -b myfirstbranch
+$ git status
+----
+
+You just cloned your forked version of the repository, and created a branch
+called 'myfirstbranch'. As ever, running git status gives you a quick view
+of which branch you're on.
+
+
+==== Make Change on the Branch
+
+Now type in these commands to make a change and push it to GitHub:
+
+----
+$ echo 'my change to the README' >> README.md
+$ git commit -am 'my change to the README'
+$ git push -u origin myfirstbranch
+----
+
+The first command adds a line to the README.md file. The second commits the
+change you made to this new branch.
+
+
+==== Understand the Relationships
+
+Make sure these relationships are clear in your mind! Here is a diagram that
+may help:
+
+image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200] 
+
+
+==== Specify Remote Branch
+
+Another way to push your branch (and one that may make the relationship clearer)
+is the following:
+
+----
+$ echo 'another change to the README' >> README.md
+$ git commit -am 'another change to the README'
+$ git push -u origin myfirstgitbranch:myfirstgitbranch
+----
+
+What's changed here is that we have added 'myfirstgitbranch:' to the branch
+part of the command.
+
+What this does is indicate that the local branch 'myfirstgitbranch' should be
+pushed to the remote branch 'myfirstgitbranch'. The colon separates the two
+branch names. The first is the 'local' one, and the second the 'remote' one.
+
+Of course, in this case the branch names are the same (myfirstgitbranch), but
+this need not be the case. By default, git assumes you want to match the names
+on the local and the remote repository, but it's useful to get into the habit
+of typing the full specification with the colon, because there are times when
+it's useful to know that this mapping is possible.
+
+The most common use I have for this knowledge is to delete a remote branch.
+
+To practice this, create a tmpbranch on your local and remote repository.
+
+----
+$ git branch tmpbranch
+$ git checkout tmpbranch
+$ echo 'a temp change on tmpbranch' >> README.md
+$ git commit -am 'a temp change on tmpbranch'
+$ git push origin tmpbranch:tmpbranch
+----
+
+Now that you've created the 'tmpbranch' on the remote repository, you might
+decide you've been too hasty, and that tmpbranch is not needed on the remote.
+
+To delete it on the remote, you specify nothing before the colon, like this:
+
+----
+$ git push origin :tmpbranch
+----
+
+This has the effect of removing the branch on the remote repository. If you
+look, it's still there on your local repository, so nothing has been lost.
+
+Quite often, projects on GitHub can accumulate a lot of branches, and this
+method can be a handy quick way to tidy up these branches.
+
+
+==== Make Pull Request
+
+Now you have a branch on the forked repository on GitHub, you want to get that
+branch's changes into the maintainer's repository. This is where you raise the
+pull request.
+
+Go to GitHub in a browser and view your repository:
+
+https://github.com/YOURUSERNAME/learn-git-the-hard-way 
+
+The instructions for creating a pull request are here:
+
+https://help.github.com/articles/creating-a-pull-request/
+
+I won't repeat it here, because the workflow can change. But in essence, the
+general process is to:
+
+- Go to your branch
+
+- Generate a new pull request
+
+- Fill out the form
+
+- Wait
+
+- Celebrate your PR's acceptance into the code, or chase the maintainer (nicely!) for an update
+
+You can create a pull request 'across forks' (a request to the upstream
+(original) repository) or against another branch in your GitHub repository.
+'Across forks' is what's most commonly meant by a public GitHub PR, a request to
+accept a change made to a repository under your control to a repository under
+someone else's (usually more 'senior' to the project).
+
+
+=== Pull Requests in Practice - Rebasing
+
+Maintainers will often ask that you rebase your branch to the main branch before
+making a pull request.
+
+You will remember rebases from section 2.5. If you don't remember, you might
+want to go back and read over it again!
+
+Maintainers will want you to rebase, so that the work of merging any changes
+made since you forked from the origin is done by you, the submitter, rather than
+them. This also makes the history of the main line easier.
+
+If you didn't understand the above paragraph, then definitely work through the
+rebase section again!
+
+The goal is that all the messy work is done on the branch (which in git is a
+more disposable thing) and the good stuff makes its way into the main line.
+Many projects will delete branches once they have served their purpose, and
+git supports this.
+
+----
+$ git branch -d mybranch
+----
+
+It will even warn you if the branch has not been merged into the branch you are
+currently on!
+
+----
+$ git branch -d abranch
+error: The branch 'abranch' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D abranch'.
+----
+
+
+==== What you have learned
+
+In this section you've finally got to a key part of git culture. Pull requests
+are talked about everywhere, and it's vital that you get comfortable with what
+they are if you are going to collaborate with others.
+
+You've also snuck in a useful bit of knowledge about deleting remote branches,
+and mentioned the importance of rebasing again.
+
+The best thing you can do at this point for your development is start using git
+in anger on a real project. If you can't find one, feel free to interact with
+the author on the project that contains this book:
+
+https://github.com/ianmiell/learn-git-the-hard-way
+
+The next best thing you can do is continue reading :)
+
+==== Exercises
+
+1) Submit a pull request to this repository
+(https://github.com/ianmiell/learn-git-the-hard-way) and see what happens!
+
+2) Create a branch on your local repository and map it to a branch on the
+remote repository.
+
+3) Delete the remote repository branch that you have mapped in 2).
+
+4) Delete the local branch that you have created in 2).
