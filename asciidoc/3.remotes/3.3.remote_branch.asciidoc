@@ -57,13 +57,15 @@ $ cd git_clone
 $ git checkout -b abranch
 $ echo 'cloned abranch commit' >> file1
 $ git commit -am 'cloned abranch commit'
-$ git push origin abranch:abranch
+$ git push origin abranch
 ----
 
-The key bit there was at the end, with the git push command. The colon
-separates the local branch name from the branch name you are pushing to on the
-remote (which here happen to have the same name).
+The key bit there was at the end, with the git push command. The first item
+after the push specifies the remote (which is 'origin' by default) and the
+branch is the next item ('abranch' here).
 
+Git will create a branch on the remote repo for you if one does not already
+exist.
 
 ==== Pushing to branch repositories with different content?
 
@@ -73,6 +75,7 @@ have a branch with different content?
 Let's see! Type this out.
 
 ----
+$ cd ..
 $ rm -rf git_origin git_clone
 $ mkdir git_origin
 $ cd git_origin
@@ -180,6 +183,7 @@ a pull request from a branch in that repository.
 Type the following out to simulate that state of affairs:
 
 ----
+$ cd ..
 $ rm -rf git_origin git_clone
 $ mkdir git_origin
 $ cd git_origin
