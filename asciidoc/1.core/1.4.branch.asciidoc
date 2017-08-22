@@ -95,9 +95,9 @@ branch to reference.
 
 Remember these points:
 
-- A 'branch' is just a pointer on a line of changes.
+- A 'branch' is a pointer to the end of a line of changes.
 
-- HEAD is just 'where you are right now'.
+- HEAD is 'where you are right now'.
 
 - 'Detached head' means you are at a commit that has no branch associated with it
 

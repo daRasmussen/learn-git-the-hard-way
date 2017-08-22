@@ -1,7 +1,16 @@
 === Cloning a repo
 
+This section covers:
+
 - git clone
 - git reset
+
+Git clone is the way you create copies of git copies to work on.
+
+Git reset is a way of returning to a previous or known state. As you play with
+git and learn it you will (and should!) often make mistakes in your local
+repositories. In these situations many users remove the entire repo and
+re-clone when often all that's needed is a hard reset.
 
 ==== Clone
 
@@ -21,14 +30,35 @@ any URL that you can access from within your network. Otherwise, check your
 proxy settings.
 ****
 
-There's .git, just as before.
+There's .git, just as before. Remember that:
+
+****
+ALL GIT REPOSITORIES ARE BORN EQUAL! 
+****
+
+This is a git repo just the same as the one you've cloned, and you own it. Its
+only connection with the repo you cloned from is seen if you run 
+
+----
+$ tail -3 .git/config
+[remote "origin"]
+	url = git@github.com:ianmiell/shutit
+	fetch = +refs/heads/*:refs/remotes/origin/*
+----
+
+You will see a new section that indicates where this git repo was cloned from,
+and gives that 'remote' a name by default: 'origin'.
+
+This is a sneak preview of what we will cover in part 3.
 
 
 ==== Accidental Deletion
 
-Recall the 4 stages of data in a git repo:
+Recall again the 4 stages of data in a git repo:
 
 image::diagrams/1.1.3.mermaid.png[scaledwidth="50%",height=200]
+
+Run these commands, in which you will make a disastrous 'mistake':
 
 ----
 $ git log                           # default history of this repo
@@ -42,7 +72,10 @@ $ rm -rf *                          # delete all the files!
 $ ls .git                           # The .git folder is still there
 ----
 
-You have cloned the repository, and 'accidentally' deleted all the files.
+You have cloned the repository, and 'accidentally' deleted all the files under
+git's control. What to do?
+
+One option often used is to re-clone, but there is another way.
 
 ==== git reset
 

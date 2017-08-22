@@ -53,14 +53,16 @@ copy of each other git repositories. All code databases are known as
 
 Now remember this, because I'll be repeating it often:
 
+****
 ALL GIT REPOSITORIES ARE BORN EQUAL!
+****
 
 Git was created so people could work on the Linux kernel across the
 globe, and offline. So there is no concept of a central server that holds the
 golden source. Instead people maintain their own source code database and
 reconcile, copy from and integrate with others'.
 
-As Linus Torvalds likes to joke that he's made the Internet his back up system.
+Linus Torvalds likes to joke that he's made the Internet his back-up system.
 
 ==== The Four Phases of Git Content
 
@@ -104,7 +106,9 @@ That's all a branch is: a set of changes from a specific point in time.
 
 Earlier I said that:
 
+****
 ALL GIT REPOSITORIES ARE BORN EQUAL!
+****
 
 In practice, some repositories are more equal than others (eg GitHub). This is
 a matter of convention within a project.
@@ -124,6 +128,15 @@ reasons why services like GitHub become central references.
 
 Keeping your local repo sync'd with others is one of the challenges of git, but
 the first step to masteringi git is understanding this equality of repos.
+
+****
+NOTE: In this book I focus on 'core' git rather than GitHub, and the command
+line rather than GUIs. This is for a few of reasons. One is that GUIs differ,
+and can mislead you about what is going on under the hood. This in turn can be
+confusing when you are forced to use (for example) BitBucket instead of Stash.
+Finally, it is easier to understand 'core' git and then map that to GUIs rather
+than the reverse.
+****
 
 ==== Other differences with git vs traditional Verson Control Systems (VCSes)
 

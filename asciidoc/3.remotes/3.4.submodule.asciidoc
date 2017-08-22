@@ -172,7 +172,9 @@ $ git branch -a -vv
 You are on the master branch (indicated with a *), which is mapped to
 remotes/origin/master. 
 
+****
 NOTE: the refs (eg ff75b7f) may be different in your output
+****
 
 You do not have an experimental branch locally. However, if you checkout a 
 branch that does not exist locally but does exist remotely, git will assume you
@@ -189,8 +191,10 @@ $ git branch -a -vv
   remotes/origin/master       ff75b7f B
 ----
 
+****
 NOTE: If more than one remote has the same name, git will not perform this
 matching. In that case you would have to run the full command:
+****
 
 ----
 $ git checkout -b experimental --track origin/master

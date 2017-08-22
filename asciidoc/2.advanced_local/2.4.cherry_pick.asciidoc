@@ -49,9 +49,10 @@ $ git cherry-pick ID
 $ git log
 ----
 
-
+****
 NOTE: while researching this I came across complex scenarios where the diff
 was not easily applied (hence the insertion of the 'crazy change' at the top).
+****
 
 Sometimes the cherry-pick might fail because the diff cannot easily be applied,
 as in this case:
