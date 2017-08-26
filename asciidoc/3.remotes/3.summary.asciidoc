@@ -1,3 +1,4 @@
+<<<
 === Summary
 
 In this section you've taken a step outside your local repository and started 

@@ -1,3 +1,4 @@
+<<<
 === Merging
 
 You've already covered basic branching in previous sections. As you will recall,

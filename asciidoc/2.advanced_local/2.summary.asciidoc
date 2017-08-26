@@ -1,3 +1,4 @@
+<<<
 === Summary
 
 In this section you have looked at more advanced local repository management and

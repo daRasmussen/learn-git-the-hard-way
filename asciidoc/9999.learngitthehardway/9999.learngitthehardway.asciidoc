@@ -1,8 +1,8 @@
 = Learn Git The Hard Way
+Ian Miell <ian.miell@gmail.com>
+v1.0, 2017-08-01
+:toc:
 
-:toc: left
-
-An introduction to Git using 'The Hard Way' method.
 
 include::../1.core/1.core.asciidoc[]
 

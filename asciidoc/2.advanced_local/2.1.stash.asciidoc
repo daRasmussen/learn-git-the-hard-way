@@ -1,3 +1,4 @@
+<<<
 === Git Stash
 
 Next I introduce a concept that you may end up using a lot!

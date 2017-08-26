@@ -1,3 +1,4 @@
+<<<
 === Git branching
 
 In this section you will learn about:
@@ -47,7 +48,7 @@ Note that the HEAD (and branch) moves forward with each commit.
 The head is where git is pointed at right now, the branch is where that branch
 reference is pointed to.
 
-===== Detached Heads
+==== Detached Heads
 
 Sometimes when using git you might have seen this:
 
@@ -94,7 +95,7 @@ $ rm -rf 1.4.2
 It 'feels wrong' to be on a detached head because you have no pointer to a
 branch to reference.
 
-===== A branch is just a pointer!
+==== A branch is just a pointer!
 
 Remember these points:
 
@@ -124,7 +125,7 @@ or you can tag wherever a branch is right now in your checkout:
 $ git tag remember_to_tell_bob_to_rewrite_this bobs_branch
 ----
 
-===== The 'master' branch
+==== The 'master' branch
 
 It's worth also pointing out here that apart from its default status, there is
 nothing special about the 'master' branch. It's just a name. Your principal
