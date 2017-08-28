@@ -10,4 +10,4 @@ include::../2.advanced_local/2.advanced_local.asciidoc[]
 
 include::../3.remotes/3.remotes.asciidoc[]
 
-include::../4.advanced/4.advanced.asciidoc[]
+//include::../4.advanced/4.advanced.asciidoc[]
