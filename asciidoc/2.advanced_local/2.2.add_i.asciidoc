@@ -1,5 +1,5 @@
 <<<
-=== Git add interactive
+=== Git Add Interactive
 
 Previously you've learned about the four stages of working in Git:
 
@@ -116,7 +116,7 @@ $ rm -rf 2.2.1
 
 
 
-==== What you learned
+==== What You Learned
 
 - Difference between staging and committing
 - Why the distinction exists

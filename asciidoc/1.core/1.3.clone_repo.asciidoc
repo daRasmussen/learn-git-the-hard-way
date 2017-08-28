@@ -1,5 +1,5 @@
 <<<
-=== Cloning a repo
+=== Cloning a Repository
 
 This section covers:
 
@@ -107,7 +107,7 @@ $ rm -rf 1.3.1      # remove temp folder
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - git clone
 - git reset

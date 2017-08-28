@@ -145,7 +145,7 @@ $ cd -
 $ rm -rf 2.1.1
 ----
 
-==== Choosing your stash
+==== Choosing Your Stash
 
 You may be wondering at this point how you manage multiple stashes.
 
@@ -244,7 +244,7 @@ How to manually remove a stash entry is left as an exercise for the reader.
 
 In general, use of the stash is limited to simple pushes/pops.
 
-==== What you learned
+==== What You Learned
 
 - What the stash is
 - How it works

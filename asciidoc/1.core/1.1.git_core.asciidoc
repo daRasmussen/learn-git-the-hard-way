@@ -139,7 +139,7 @@ Finally, it is easier to understand 'core' git and then map that to GUIs rather
 than the reverse.
 ****
 
-==== Other differences with git vs traditional Verson Control Systems (VCSes)
+==== Other Verson Control Systems (VCSes)
 
 If you're already familiar with other VCSes, git has some key differences you
 should bear in mind as you learn about it.
@@ -193,7 +193,7 @@ $ git config --global user.email "you@example.com"
 $ git config --global user.name "Your Name"
 ----
 
-==== What you learned
+==== What You Learned
 
 - what git is - the four stages
 - setting up git

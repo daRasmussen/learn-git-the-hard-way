@@ -61,7 +61,7 @@ this causes management problems, as the user checking out the source must
 remember to keep code outside this git repository in a certain place for it
 all to work.
 
-==== git submodule
+==== The 'git submodule' Command
 
 Git submodules solve these 'external repository' dependency issues, with a
 little overhead. Now that you understand local and remote repositories, it will
@@ -159,7 +159,7 @@ on, so I really recommend playing with these simple examples to get the
 relationships clear in your mind.
 
 
-==== Get the experimental branch
+==== Get the Experimental Branch
 
 Since your 'alicelib' submodule is a straightforward clone of the remote
 'alicelib' origin, you have the master branch and the origin's experimental
@@ -209,7 +209,7 @@ $ git checkout -b alicemaster --track origin/master
 assuming it's the origin's master branch you want to track.
 
 
-==== Git tracks the submodule's state
+==== Git Tracks the Submodule's State
 
 Now that you've checked out and tracked the remote experimental branch in your
 submodule, a change has taken place in bob_repo. If you return to bob_repo's
@@ -244,7 +244,7 @@ $ git commit -am 'alicelib moved to experimental'
  create mode 160000 alicelib
 ----
 
-==== Alice makes a change
+==== Alice Makes a Change
 
 Alice now spots a bug in her experimental branch that she wants to fix:
 
@@ -293,7 +293,7 @@ out as submodules until you are more experienced with git. You quickly may find
 yourself in a 'detached HEAD' state and confused about what you've done.
 ****
 
-==== Checking out a project with submodules
+==== Cloning a Project with Submodules
 
 Submodules have a special status within git repositories. Since they are both
 included within a repository and at the same time referencing a remote
@@ -335,7 +335,7 @@ $ git submodule status
 Now the submodule status has no dash, and a commit ID has been added to the
 output (969b840).
 
-==== git clone --recursive
+==== The 'git clone --recursive' Flag
 
 Fortunately there is an easier way. You can clone the repository with a 
 --recursive flag to automatically init and update any submodules (and submodules
@@ -353,7 +353,7 @@ Submodule path 'alicelib': checked out '969b840142f389de55357350a6f26f0825e02393
 ----
 
 
-==== You have learned
+==== You Have Learned
 
 - How to set up git submodules
 - How to add a submodule to a repo

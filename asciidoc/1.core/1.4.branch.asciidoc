@@ -1,5 +1,5 @@
 <<<
-=== Git branching
+=== Git Branching
 
 In this section you will learn about:
 
@@ -106,7 +106,7 @@ Remember these points:
 - 'Detached head' means you are at a commit that has no branch associated with it
 
 
-==== What about tags?
+==== What About Tags?
 
 We can cover off tags real quick while we're here.
 
@@ -125,13 +125,13 @@ or you can tag wherever a branch is right now in your checkout:
 $ git tag remember_to_tell_bob_to_rewrite_this bobs_branch
 ----
 
-==== The 'master' branch
+==== The 'master' Branch
 
 It's worth also pointing out here that apart from its default status, there is
 nothing special about the 'master' branch. It's just a name. Your principal
 branch might be called 'live', 'alice', 'pristine', or whatever you like.
 
-==== What you learned
+==== What You Learned
 
 - git branch
 - git checkout

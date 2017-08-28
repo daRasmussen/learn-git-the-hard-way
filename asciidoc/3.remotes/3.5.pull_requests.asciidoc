@@ -28,7 +28,7 @@ applications' (or workflows') pull request methods. Usually it doesn't come up,
 but remember that details can differ between them.
 ****
 
-==== GitHub pull requests
+==== GitHub Pull Requests
 
 For this section 
 
@@ -224,7 +224,7 @@ If you are sure you want to delete it, run 'git branch -D abranch'.
 ----
 
 
-==== What you have learned
+==== What You Learned
 
 In this section you've finally got to a key part of git culture. Pull requests
 are talked about everywhere, and it's vital that you get comfortable with what

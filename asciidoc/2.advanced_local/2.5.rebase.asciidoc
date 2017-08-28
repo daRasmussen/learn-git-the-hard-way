@@ -290,7 +290,7 @@ $ rm -rf 2.5.1
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - What a rebase is 
 - What fast-forward means

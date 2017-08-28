@@ -44,7 +44,7 @@ Make sure you understand why there are three lines in the second 'git branch'
 output! If you don't, start the chapter again!
 
 
-==== Create branch and push to remote
+==== Creating and Pushing Branches
 
 Now you're going to create a branch on the clone, do some work on it, and then
 push it to the remote repository.
@@ -68,7 +68,7 @@ branch is the next item ('abranch' here).
 Git will create a branch on the remote repo for you if one does not already
 exist.
 
-==== Pushing to branch repositories with different content?
+==== Pushing to Repositories with Different Content?
 
 You might be asking yourself at this point: what happens if both repositories
 have a branch with different content? 
@@ -175,7 +175,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 Follow the instructions to resolve the conflict and commit the result.
 
 
-==== The branch exists on the remote, but not locally
+==== The Branch Exists Only on the Remote
 
 It is common to have a branch that exists on a remote repository, but not in
 your local repository. Maybe someone else pushed a branch up, or has made
@@ -270,7 +270,7 @@ those changes to the tracked branch, ie the abranch branch on the remote
 repository.
 
 
-==== Tracking a remote branch with a different name
+==== Tracking Remote Branches with Different Names
 
 More rarely, you may want to track a branch on the remote repository that
 has a different name. Or, you may want to manually mark the local branch as
@@ -373,7 +373,7 @@ $ git branch -vv
   master  41ffa8a [origin/master] file1
 ----
 
-==== What you learned
+==== What You Learned
 
 In this section you added to your knowledge about git commit. You:
 

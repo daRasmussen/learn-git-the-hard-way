@@ -94,7 +94,7 @@ origin	/Users/imiell/gitcourse/git_origin (push)
 which gives you the information about the URLs you saw in the config file.
 
 
-==== fetch
+==== The 'git fetch' Command
 
 The above remotes are divided into "(fetch)" and "(push)" actions. These relate
 to two different actions on remotes, ie getting changes from a remote, or pushing
@@ -224,7 +224,7 @@ $ cd ../..
 $ rm -rf 3.1.1
 ----
 
-==== What you've learned 
+==== What You Learned 
 
 You have learned what a 'git pull' actually does.
 

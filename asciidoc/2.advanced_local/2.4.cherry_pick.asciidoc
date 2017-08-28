@@ -125,6 +125,6 @@ $ rm -rf 2.4.3
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - what git cherry pick does

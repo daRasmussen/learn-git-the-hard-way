@@ -48,7 +48,7 @@ image::diagrams/2.6.6.mermaid.png[]
 Once you know that the first 'bad' commit was A63, you can examine the difference
 between A62 and A63, and this gives you a clue.
 
-==== A 'real' git bisect session
+==== A 'Real' 'git bisect' Session
 
 Let's make this more realistic with an actual git bisect session.
 
@@ -119,6 +119,6 @@ $ git diff 79583459dc6061bd91d55cfcf8c34fae845f836b^ 79583459dc6061bd91d55cfcf8c
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - How to bisect a git repo

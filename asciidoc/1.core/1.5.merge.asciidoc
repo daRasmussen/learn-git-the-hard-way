@@ -86,7 +86,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 Oh dear, that does not look good. The merge failed with a CONFLICT.
 
-==== What's going on?
+==== What's Going On?
 
 So what exactly happens when you perform a merge? 
 
@@ -182,7 +182,7 @@ some sense: if you are looking at a repository with a long history, you are more
 likely to be interested in recent changes than older ones.
 ****
 
-==== What you learned
+==== What Yyou Learned
 
 - What a merge is
 - What a merge conflict is

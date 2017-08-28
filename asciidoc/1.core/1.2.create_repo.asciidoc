@@ -1,5 +1,5 @@
 <<<
-=== Git basics
+=== Git Basics
 
 This section covers:
 
@@ -68,7 +68,7 @@ ref: refs/heads/master
 The file is a link to the 'refs/heads/master' file (which is the default branch
 assumed by git).
 
-==== config
+==== Git Configuration
 
 'config' stores information about your repository's local configuration, eg
 what branches and remote repositories your repository is aware of. It's a plain
@@ -88,7 +88,7 @@ $ cat config
 Again, don't be concerned with understanding what it all means. Just be aware
 of its existence.
 
-==== git log
+==== The 'git log' Command
 
 If you want to look at the history of this repository, run the git log command:
 
@@ -110,7 +110,7 @@ ls: .git/refs/heads/master: No such file or directory
 
 You need to create a history for 'git log' to return something useful.
 
-==== git status
+==== The 'git status' Command
 
 As is often the case, git status is your friend:
 
@@ -150,7 +150,7 @@ exists but the repository is not 'aware' of it.
 
 Make git aware of it by adding it to the repository.
 
-==== git add
+==== The 'git add' Command
 
 The add command tells git to start tracking files to the local index.
 
@@ -186,7 +186,7 @@ fatal: bad default revision 'HEAD'
 
 So you need to commit it to the repository to get a history.
 
-==== git commit
+==== The 'git commit' Command
 
 The git commit command tells git to take a snapshot of all added contents at
 this point.
@@ -234,7 +234,7 @@ $ git log
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - git init
 - the .git folder

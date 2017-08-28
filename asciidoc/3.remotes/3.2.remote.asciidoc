@@ -1,5 +1,5 @@
 <<<
-=== Working with multiple repos
+=== Working With Multiple Repositories
 
 Now you are going to work with multiple repos.
 
@@ -145,7 +145,7 @@ $ rm -rf 3.2.1
 ----
 
 
-==== What you learned
+==== What You Learned
 
 - How to add a remote repo
 - How to fetch changes from the remote repo
