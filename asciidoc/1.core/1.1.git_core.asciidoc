@@ -50,7 +50,9 @@ My local changes could not be shared with anyone else until I committed and
 pushed them to the server.
 
 Git, by contrast, is fundamentally distributed. Each git 'repository' is a full
-copy of each other git repositories. All code databases are known as
+copy of each other git repository it is copied from. It is not a 'link' to a
+server, or a 'shadow' copy of another repository. You can make reference to the
+'origin' repository, but you do not have to. All code databases are known as
 'repositories'.
 
 Now remember this, because I'll be repeating it often:
@@ -64,7 +66,8 @@ globe, and offline. So there is no concept of a central server that holds the
 golden source. Instead people maintain their own source code database and
 reconcile, copy from and integrate with others'.
 
-Linus Torvalds likes to joke that he's made the Internet his back-up system.
+Linus Torvalds (the creator of Git and Linux) likes to joke that he's made the
+Internet his back-up system.
 
 ==== The Four Phases of Git Content
 
