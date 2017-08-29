@@ -142,7 +142,7 @@ completed. At that point you can commit your change, and the merge has taken
 place.
 
 You could even leave the file as is (including the '<<<<<<<','=======', and
-'>>>>>>>' lines, though this is unlikely to be what you want! It's surprising
+'>>>>>>>' lines), though this is unlikely to be what you want! It's surprising
 how easily you can forget to resolve all the conflicting sections in your
 codebase when doing a merge.
 
