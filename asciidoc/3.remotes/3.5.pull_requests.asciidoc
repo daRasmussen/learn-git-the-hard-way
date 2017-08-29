@@ -190,7 +190,7 @@ accept a change made to a repository under your control to a repository under
 someone else's (usually more 'senior' to the project).
 
 
-=== Pull Requests in Practice - Rebasing
+==== Pull Requests in Practice - Rebasing
 
 Maintainers will often ask that you rebase your branch to the main branch before
 making a pull request.
@@ -239,7 +239,7 @@ the author on the project that contains this book:
 
 https://github.com/ianmiell/learn-git-the-hard-way
 
-The next best thing you can do is continue reading :)
+//The next best thing you can do is continue reading :)
 
 ==== Exercises
 
