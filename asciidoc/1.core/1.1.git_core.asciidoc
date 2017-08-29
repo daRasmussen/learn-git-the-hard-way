@@ -4,7 +4,7 @@
 This section covers:
 
 - source control
-- git vs trad SCs
+- git vs traditional source control tools
 - the four phases of the git lifecycle
 - benefits of git
 - git config
@@ -25,7 +25,8 @@ It's a database of files and the histories of their states. Like a database, you
 have to learn the skills necessary to work on it before you feel the benefit.
 
 I'm old enough to remember a time when people complained about using source
-control at all! These days, using source control for projects is a
+control at all! These days, NOT using source control for projects is almost
+unheard of.
 
 Before git existed, there were what I call 'traditional' source control tools.
 
