@@ -153,7 +153,7 @@ Now, you may have some questions at this point, such as:
 Can I push those to alice's? Can I keep those private to my repository?
 - What if there are conflicts between these repositories?
 
-... and so on. I certainly had these questions when I came to git submodules,
+and so on. I certainly had these questions when I came to git submodules,
 and with some trial and error it took me some time to understand what was going
 on, so I really recommend playing with these simple examples to get the 
 relationships clear in your mind.
