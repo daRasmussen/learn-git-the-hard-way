@@ -36,6 +36,9 @@ $(DEPLOY_DIR): FORCE
 	cp -R output/9999.learngitthehardway.pdf output/learngitthehardway.pdf
 	cp -R output/learngitthehardway.pdf learngitthehardway.pdf
 	cp -R output/* $(DEPLOY_DIR)
+	git commit -am 'pdf'
+	git pull --rebase
+	git push
 
 else
 deploy:
