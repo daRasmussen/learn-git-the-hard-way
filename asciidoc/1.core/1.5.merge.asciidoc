@@ -169,7 +169,7 @@ Reading this from bottom to top, you can read commit C and commit H as being
 merged into the HEAD of master.
 
 ****
-NOTE: git prefers to show the history from most recent to oldest, which is
+NOTE: git log prefers to show the history from most recent to oldest, which is
 the opposite of the diagrams in this section. The git man pages like to show
 time from left to right, like this:
 
@@ -182,7 +182,7 @@ some sense: if you are looking at a repository with a long history, you are more
 likely to be interested in recent changes than older ones.
 ****
 
-==== What Yyou Learned
+==== What You Learned
 
 - What a merge is
 - What a merge conflict is
