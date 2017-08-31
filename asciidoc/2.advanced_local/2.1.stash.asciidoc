@@ -13,7 +13,8 @@ changed files.
 However, git has a concept of the stash to store all local changes ready to
 reapply at will.
 
-You can get very sophisticated with the stash, but 99% of the time I use it like this:
+You can get very sophisticated with the stash, but 99% of the time I use it
+like this:
 
 ----
 [do some work]
