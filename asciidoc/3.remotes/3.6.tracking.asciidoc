@@ -1,0 +1,36 @@
+Optional:
+
+This 'tracks':
+
+ mkdir originrepo
+ cd originrepo
+ git init
+ touch a
+ git add a
+ git branch abranch1
+ git commit -am a
+ git branch abranch1
+ cd ../
+ git clone originrepo
+ mkdir clonerepo
+ cd clonerepo
+ git clone ../originrepo
+ cd originrepo/
+ git checkout abranch1
+
+ mkdir clone2repo
+ cd clone2repo/
+ git clone ../clonerepo
+ git clone ../clonerepo/originrepo/
+ cd originrepo/
+ git remote add cloned ../../clonerepo/originrepo
+ git fetch cloned
+ git branch -a
+ git branch master    # DOES NOT TRACK - WHICH ONE!?
+ git branch -avv
+ git branch -d master
+ git branch master remotes/origin/master  # IF you specify, it will track
+ git branch -avv
+ git branch -d master
+ git branch master remotes/cloned/master
+ git branch -avv
