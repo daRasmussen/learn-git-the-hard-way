@@ -132,7 +132,7 @@ challenging to understand than traditional SCM tools, which is one of the
 reasons why services like GitHub become central references.
 
 Keeping your local repo sync'd with others is one of the challenges of git, but
-the first step to masteringi git is understanding this equality of repos.
+the first step to mastering git is understanding this equality of repos.
 
 ****
 NOTE: In this book I focus on 'core' git rather than GitHub, and the command
